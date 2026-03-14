@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import Image from 'next/image';
 import { LogIn, Loader2, Mail, Lock, ArrowLeft, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -62,7 +61,15 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <Image src="/mindmaster-logo.png" alt="MindMaster" width={140} height={40} className="h-9 w-auto" />
+            <div className="flex items-center gap-3">
+              <div
+                className="w-10 h-10 rounded-xl brand-gradient flex items-center justify-center"
+                style={{ boxShadow: '0 6px 16px rgba(13,148,136,0.3)' }}
+              >
+                <Sparkles className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-2xl font-bold tracking-tight brand-gradient-text">MasterFlow</span>
+            </div>
           </div>
           <h1 className="text-3xl font-bold text-white mb-1.5">
             Bem-vindo ao <span className="brand-gradient-text">MasterFlow</span>

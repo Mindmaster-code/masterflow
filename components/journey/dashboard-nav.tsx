@@ -39,10 +39,7 @@ export function DashboardNav() {
           >
             <Sparkles className="w-4 h-4 text-white" />
           </div>
-          <div>
-            <span className="font-bold text-base tracking-tight brand-gradient-text">MasterFlow</span>
-            <p className="text-[10px] text-white/30 leading-none mt-0.5">by MindMaster</p>
-          </div>
+          <span className="font-bold text-base tracking-tight brand-gradient-text">MasterFlow</span>
         </Link>
 
         {/* Center nav */}
