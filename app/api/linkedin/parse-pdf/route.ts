@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { PDFParse } from 'pdf-parse';
+import { extractText, getDocumentProxy } from 'unpdf';
 
 export async function POST(req: Request) {
   try {
@@ -27,11 +27,10 @@ export async function POST(req: Request) {
       );
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
-    const parser = new PDFParse({ data: buffer });
-    const result = await parser.getText();
-    await parser.destroy();
-    const text = (result?.text || '').trim().slice(0, 12000);
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf = await getDocumentProxy(new Uint8Array(arrayBuffer));
+    const { text: extractedText } = await extractText(pdf, { mergePages: true });
+    const text = (extractedText || '').trim().slice(0, 12000);
 
     if (text.length < 50) {
       return NextResponse.json(
