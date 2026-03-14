@@ -140,14 +140,12 @@ export function DashboardNav() {
 
             <DropdownMenuSeparator style={{ background: 'rgba(13,148,136,0.12)' }} className="mx-1 my-1" />
 
-            <DropdownMenuItem asChild>
-              <Link
-                href="/api/auth/signout?callbackUrl=/"
-                className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-red-400/70 hover:text-red-400 focus:bg-red-500/8 cursor-pointer"
-              >
-                <LogOut className="w-4 h-4" />
-                Sair da conta
-              </Link>
+            <DropdownMenuItem
+              onClick={() => { window.location.href = '/api/auth/signout?callbackUrl=/'; }}
+              className="cursor-pointer rounded-xl px-3 py-2.5 text-red-400/70 hover:text-red-400 gap-3 focus:bg-red-500/8"
+            >
+              <LogOut className="w-4 h-4" />
+              Sair da conta
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
