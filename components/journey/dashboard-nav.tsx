@@ -1,6 +1,6 @@
 'use client';
 
-import { signOut, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -140,19 +140,14 @@ export function DashboardNav() {
 
             <DropdownMenuSeparator style={{ background: 'rgba(13,148,136,0.12)' }} className="mx-1 my-1" />
 
-            <DropdownMenuItem
-              onClick={async () => {
-                try {
-                  await signOut({ redirect: false });
-                  window.location.href = '/';
-                } catch {
-                  window.location.href = '/';
-                }
-              }}
-              className="cursor-pointer rounded-xl px-3 py-2.5 text-red-400/70 hover:text-red-400 gap-3 focus:bg-red-500/8"
-            >
-              <LogOut className="w-4 h-4" />
-              Sair da conta
+            <DropdownMenuItem asChild>
+              <Link
+                href="/api/auth/signout?callbackUrl=/"
+                className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-red-400/70 hover:text-red-400 focus:bg-red-500/8 cursor-pointer"
+              >
+                <LogOut className="w-4 h-4" />
+                Sair da conta
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
