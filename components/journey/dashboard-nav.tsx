@@ -141,7 +141,11 @@ export function DashboardNav() {
             <DropdownMenuSeparator style={{ background: 'rgba(13,148,136,0.12)' }} className="mx-1 my-1" />
 
             <DropdownMenuItem
-              onClick={() => { window.location.href = '/api/auth/signout?callbackUrl=/'; }}
+              onClick={() => {
+                setTimeout(() => {
+                  window.location.assign('/api/auth/signout?callbackUrl=/');
+                }, 100);
+              }}
               className="cursor-pointer rounded-xl px-3 py-2.5 text-red-400/70 hover:text-red-400 gap-3 focus:bg-red-500/8"
             >
               <LogOut className="w-4 h-4" />
