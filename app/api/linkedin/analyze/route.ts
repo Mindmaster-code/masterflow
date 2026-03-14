@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
+import { db } from '@/lib/db';
 import OpenAI from 'openai';
 
 function stripHtml(html: string): string {
@@ -116,6 +117,26 @@ Seja objetivo e acionável. Priorize 3-5 itens em cada lista.`,
     }
 
     const analysis = JSON.parse(raw);
+
+    await db.linkedInAnalysis.upsert({
+      where: { userId: session.user.id! },
+      create: {
+        userId: session.user.id!,
+        cargo: cargo || null,
+        resumo: analysis.resumo || '',
+        pontosFortes: analysis.pontosFortes || [],
+        pontosMelhoria: analysis.pontosMelhoria || [],
+        recomendacoes: analysis.recomendacoes || [],
+      },
+      update: {
+        cargo: cargo || null,
+        resumo: analysis.resumo || '',
+        pontosFortes: analysis.pontosFortes || [],
+        pontosMelhoria: analysis.pontosMelhoria || [],
+        recomendacoes: analysis.recomendacoes || [],
+      },
+    });
+
     return NextResponse.json(analysis);
   } catch (e) {
     console.error('LinkedIn analyze error:', e);

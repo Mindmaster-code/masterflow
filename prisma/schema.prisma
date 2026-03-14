@@ -28,8 +28,24 @@ model User {
   skills             Skill[]
   sprints            Sprint[]
   swotAnalysis       SwotAnalysis?
+  linkedinAnalysis   LinkedInAnalysis?
 
   @@map("users")
+}
+
+model LinkedInAnalysis {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  cargo           String?
+  resumo          String
+  pontosFortes    Json     // string[]
+  pontosMelhoria  Json     // string[]
+  recomendacoes  Json     // { titulo, descricao, prioridade }[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("linkedin_analyses")
 }
 
 model Account {

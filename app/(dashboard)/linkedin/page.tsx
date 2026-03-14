@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -28,6 +28,16 @@ export default function LinkedinPage() {
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [showFallback, setShowFallback] = useState(false);
   const [addedToKanban, setAddedToKanban] = useState<Set<number>>(new Set());
+  const [loadingSaved, setLoadingSaved] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/linkedin/analysis')
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (data) setResult(data);
+      })
+      .finally(() => setLoadingSaved(false));
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -243,8 +253,20 @@ export default function LinkedinPage() {
         </CardContent>
       </Card>
 
-      {result && (
+      {loadingSaved && (
+        <div className="flex items-center justify-center py-12 text-white/50">
+          <Loader2 className="w-6 h-6 animate-spin mr-2" />
+          Carregando...
+        </div>
+      )}
+
+      {result && !loadingSaved && (
         <div className="space-y-6 animate-fade-in">
+          <div className="flex items-center justify-between">
+            <p className="text-sm text-emerald-400/80">
+              ✓ Análise salva automaticamente — você pode sair e voltar quando quiser
+            </p>
+          </div>
           <Card className="premium-card border-teal-500/20">
             <CardHeader>
               <CardTitle className="text-lg">Resumo</CardTitle>
