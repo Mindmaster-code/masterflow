@@ -14,8 +14,8 @@ export default function Home() {
       {/* ─── Nav ─── */}
       <header className="fixed top-0 left-0 right-0 z-50 nav-blur">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group text-white">
-            <Image src="/mindmaster-logo.svg" alt="MindMaster" width={140} height={36} className="h-9 w-auto" priority />
+          <Link href="/" className="flex items-center gap-3 group">
+            <Image src="/mindmaster-logo.png" alt="MindMaster" width={140} height={40} className="h-9 w-auto" priority />
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -50,7 +50,7 @@ export default function Home() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <div className="flex justify-center mb-10">
-            <Image src="/mindmaster-logo.svg" alt="MindMaster" width={180} height={45} className="h-12 w-auto" priority />
+            <Image src="/mindmaster-logo.png" alt="MindMaster" width={200} height={55} className="h-14 w-auto" priority />
           </div>
 
           <div className="flex justify-center mb-6 animate-fade-in">

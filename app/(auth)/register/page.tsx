@@ -70,7 +70,7 @@ export default function RegisterPage() {
 
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <Image src="/mindmaster-logo.svg" alt="MindMaster" width={140} height={35} className="h-9 w-auto" />
+            <Image src="/mindmaster-logo.png" alt="MindMaster" width={140} height={40} className="h-9 w-auto" />
           </div>
           <h1 className="text-3xl font-bold text-white mb-1.5">
             Criar conta no <span className="brand-gradient-text">MasterFlow</span>
