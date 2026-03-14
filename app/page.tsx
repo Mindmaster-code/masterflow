@@ -14,11 +14,8 @@ export default function Home() {
       {/* ─── Nav ─── */}
       <header className="fixed top-0 left-0 right-0 z-50 nav-blur">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 rounded-lg brand-gradient flex items-center justify-center shadow-lg group-hover:shadow-teal-500/40 transition-shadow" style={{ boxShadow: '0 4px 12px rgba(13,148,136,0.3)' }}>
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-bold text-lg tracking-tight">MasterFlow</span>
+          <Link href="/" className="flex items-center gap-3 group text-white">
+            <Image src="/mindmaster-logo.svg" alt="MindMaster" width={140} height={36} className="h-9 w-auto" priority />
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -53,7 +50,7 @@ export default function Home() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <div className="flex justify-center mb-10">
-            <Image src="/mindmaster-logo.svg" alt="MindMaster" width={160} height={40} className="h-10 w-auto opacity-90" priority />
+            <Image src="/mindmaster-logo.svg" alt="MindMaster" width={180} height={45} className="h-12 w-auto" priority />
           </div>
 
           <div className="flex justify-center mb-6 animate-fade-in">
@@ -70,8 +67,8 @@ export default function Home() {
           </h1>
 
           <p className="text-lg md:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed mb-10 animate-slide-in-up" style={{ animationDelay: '0.2s' }}>
-            Plataforma de desenvolvimento profissional baseada em Análise SWOT,
-            OKR e gestão ágil — do diagnóstico ao plano de ação em 4 etapas.
+            Plataforma de desenvolvimento profissional baseada em Análise SWOT
+            e gestão ágil — do diagnóstico ao plano de ação em 4 etapas.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-scale-in" style={{ animationDelay: '0.3s' }}>
@@ -91,7 +88,7 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
             {[
               { icon: CheckCircle2, text: 'Análise SWOT' },
-              { icon: CheckCircle2, text: 'OKR & Kanban' },
+              { icon: CheckCircle2, text: 'Kanban' },
               { icon: CheckCircle2, text: '16 Skills Mapeadas' },
               { icon: CheckCircle2, text: 'Plano de Ação' },
             ].map(({ icon: Icon, text }) => (
@@ -191,7 +188,7 @@ export default function Home() {
                 <span className="brand-gradient-text">baseado em dados</span>
               </h2>
               <p className="text-white/45 text-lg mb-10 leading-relaxed">
-                Chega de achismos. O MasterFlow usa metodologias comprovadas como SWOT, OKR e Kanban para criar um plano de carreira personalizado e mensurável.
+                Chega de achismos. O MasterFlow usa metodologias comprovadas como SWOT e Kanban para criar um plano de carreira personalizado e mensurável.
               </p>
               <div className="space-y-3">
                 {[
@@ -270,7 +267,6 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-3">
             {[
               { name: 'Análise SWOT',    color: 'from-teal-600 to-teal-700'   },
-              { name: 'OKR',             color: 'from-teal-500 to-cyan-600'   },
               { name: 'Kanban',          color: 'from-cyan-600 to-sky-600'    },
               { name: 'Scrum',           color: 'from-sky-600 to-blue-600'    },
               { name: 'Design Thinking', color: 'from-blue-600 to-indigo-600' },

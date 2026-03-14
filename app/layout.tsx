@@ -12,7 +12,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "MasterFlow — Mentoria de Carreira Executiva",
-  description: "Plataforma de desenvolvimento profissional baseada em Análise SWOT, OKR e gestão ágil — da MindMaster.",
+  description: "Plataforma de desenvolvimento profissional baseada em Análise SWOT e gestão ágil — da MindMaster.",
 };
 
 export default function RootLayout({

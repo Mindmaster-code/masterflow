@@ -172,7 +172,7 @@ vercel
 # Configurar variáveis de ambiente no dashboard da Vercel
 # - DATABASE_URL
 # - NEXTAUTH_SECRET
-# - NEXTAUTH_URL
+# - NEXTAUTH_URL (https://masterflow-flame.vercel.app)
 ```
 
 ## 📝 Scripts
