@@ -1,36 +1,212 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MasterFlow - Mentoria de Carreira Executiva
 
-## Getting Started
+Plataforma premium de desenvolvimento de carreira para executivos, baseada em metodologias OKR, SWOT e Scrum.
 
-First, run the development server:
+## 🚀 Tecnologias
+
+- **Frontend**: Next.js 15 + TypeScript
+- **UI**: shadcn/ui + Tailwind CSS
+- **Banco de Dados**: Vercel Postgres + Prisma ORM
+- **Autenticação**: NextAuth.js
+- **Drag & Drop**: @dnd-kit
+- **Animações**: Framer Motion + canvas-confetti
+- **Gráficos**: Recharts
+
+## 📦 Instalação
 
 ```bash
+# Instalar dependências
+npm install
+
+# Configurar variáveis de ambiente
+cp .env.example .env
+# Edite o .env e adicione sua connection string do Vercel Postgres
+
+# Executar migrations do Prisma
+npx prisma migrate dev --name init
+
+# Gerar Prisma Client
+npx prisma generate
+
+# Iniciar servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🗃️ Configuração do Banco de Dados
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Vercel Postgres
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Acesse [Vercel Dashboard](https://vercel.com/dashboard)
+2. Crie um novo Postgres database
+3. Copie a connection string (formato: `postgres://...`)
+4. Cole no arquivo `.env` na variável `DATABASE_URL`
 
-## Learn More
+### Executar Migrations
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx prisma migrate dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎯 Funcionalidades
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 5 Etapas da Jornada
 
-## Deploy on Vercel
+1. **Ponto de Partida**
+   - Perfil profissional (quem sou eu)
+   - Qualificações (formação, cursos, certificações)
+   - Desafios atuais
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. **Auto-Conhecimento**
+   - Onde quero chegar (cargo, salário desejado)
+   - O que preciso para chegar lá
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. **Mapeamento de Habilidades**
+   - Avaliação de 16 skills (1-10)
+   - Identificação de skills de baixa pontuação
+   - Análise SWOT de carreira
+
+4. **Destino**
+   - Criação de OKRs (Objetivos e Key Results)
+   - Backlog 2D de iniciativas (matriz Eisenhower)
+
+5. **Plano de Ação**
+   - Sprint Planning (priorização de iniciativas)
+   - Kanban Board (A Fazer, Fazendo, Feito)
+   - Sprint Review (avaliação)
+   - Retrospectiva
+
+### Área Administrativa
+
+- Dashboard com todos os alunos
+- Visualização do progresso de cada aluno
+- Detalhes completos da jornada
+
+## 🎨 Design Premium
+
+- Tema dark por padrão (estilo Tesla)
+- Animações suaves e micro-interações
+- Glassmorphism e gradientes
+- Celebração animada ao concluir iniciativas (confetti)
+
+## 📱 Estrutura do Projeto
+
+```
+masterflow/
+├── app/
+│   ├── (auth)/              # Autenticação
+│   │   ├── login/
+│   │   └── register/
+│   ├── (dashboard)/         # Dashboard protegido
+│   │   ├── dashboard/       # Página principal
+│   │   ├── step1/          # Etapa 1
+│   │   ├── step2/          # Etapa 2
+│   │   ├── step3/          # Etapa 3
+│   │   ├── step4/          # Etapa 4
+│   │   └── step5/          # Etapa 5
+│   ├── admin/              # Área administrativa
+│   └── api/                # API routes
+├── components/
+│   ├── journey/            # Componentes da jornada
+│   ├── okr/                # Componentes de OKR
+│   ├── sprint/             # Componentes de sprint
+│   └── ui/                 # Componentes shadcn/ui
+├── lib/
+│   ├── db.ts               # Prisma client
+│   ├── auth.ts             # Configuração NextAuth
+│   ├── validations.ts      # Schemas Zod
+│   └── constants.ts        # Constantes
+└── prisma/
+    └── schema.prisma       # Schema do banco
+```
+
+## 🔐 Usuários
+
+### Criar Usuário Admin
+
+```bash
+# Via Prisma Studio
+npx prisma studio
+
+# Ou via script SQL
+# UPDATE users SET role = 'ADMIN' WHERE email = 'admin@email.com';
+```
+
+## 🎓 Metodologias Implementadas
+
+- **OKR**: Objectives and Key Results
+- **SWOT**: Análise de Forças, Fraquezas, Oportunidades e Ameaças
+- **Scrum**: Sprint Planning, Kanban, Review e Retrospectiva
+- **Matriz Eisenhower**: Backlog 2D (Urgente/Importante)
+
+## 📊 Fluxo de Dados
+
+```
+User
+  └─ JourneyProgress (progresso geral)
+  └─ Profile (etapa 1)
+  └─ Qualifications (etapa 1)
+  └─ CurrentChallenges (etapa 1)
+  └─ CareerGoals (etapa 2)
+  └─ QualificationNeeds (etapa 2)
+  └─ Skills (etapa 3)
+  └─ SwotAnalysis (etapa 3)
+  └─ Objectives (etapa 4)
+      └─ KeyResults
+          └─ Initiatives
+              └─ Sprint
+                  └─ SprintReview
+                  └─ Retrospective
+```
+
+## 🚀 Deploy
+
+### Vercel (Recomendado)
+
+```bash
+# Instalar Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+
+# Configurar variáveis de ambiente no dashboard da Vercel
+# - DATABASE_URL
+# - NEXTAUTH_SECRET
+# - NEXTAUTH_URL
+```
+
+## 📝 Scripts
+
+```bash
+# Desenvolvimento
+npm run dev
+
+# Build
+npm run build
+
+# Prisma Studio (visualizar banco)
+npx prisma studio
+
+# Migrations
+npx prisma migrate dev
+
+# Reset do banco (cuidado!)
+npx prisma migrate reset
+```
+
+## 🎯 Próximos Passos
+
+- [ ] Gráfico radar de skills
+- [ ] Exportação de PDF do plano de carreira
+- [ ] Notificações de progresso
+- [ ] Analytics de tempo por etapa
+- [ ] Templates de OKR por área
+- [ ] Gamificação (badges, conquistas)
+
+## 📄 Licença
+
+Propriedade da MindMaster - Mentoria de Carreira Executiva
+
+---
+
+Desenvolvido com Next.js e Vercel

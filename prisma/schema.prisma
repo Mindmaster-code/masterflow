@@ -1,13 +1,332 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String              @id @default(cuid())
+  name               String
+  email              String              @unique
+  password           String
+  role               Role                @default(STUDENT)
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  accounts           Account[]
+  actions            Action[]
+  careerGoals        CareerGoals?
+  currentChallenges  CurrentChallenges?
+  journeyProgress    JourneyProgress?
+  objectives         Objective[]
+  profile            Profile?
+  qualificationNeeds QualificationNeeds?
+  qualifications     Qualification?
+  sessions           Session[]
+  skills             Skill[]
+  sprints            Sprint[]
+  swotAnalysis       SwotAnalysis?
+
+  @@map("users")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Profile {
+  id             String      @id @default(cuid())
+  userId         String      @unique
+  name           String
+  currentRole    String
+  currentCompany String
+  timeInCompany  String
+  salaryRange    SalaryRange
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+model Qualification {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  academicFormation String[]
+  formationCourses  String[]
+  techDomains       String[]
+  certifications    String[]
+  otherRecognitions String[]
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("qualifications")
+}
+
+model CurrentChallenges {
+  id             String   @id @default(cuid())
+  userId         String   @unique
+  whatBothersMe  String
+  myMotivation   String
+  attitudesToWin String[]
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("current_challenges")
+}
+
+model CareerGoals {
+  id                     String   @id @default(cuid())
+  userId                 String   @unique
+  desiredRole            String
+  desiredSalary          String
+  roleRequirements       String[]
+  targetCompanies        String[]
+  requiredCertifications String[]
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+  user                   User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("career_goals")
+}
+
+model QualificationNeeds {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  knowledgeNeeded String[]
+  skillsNeeded    String[]
+  coursesNeeded   String[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("qualification_needs")
+}
+
+model Skill {
+  id        String        @id @default(cuid())
+  userId    String
+  name      String
+  category  SkillCategory
+  score     Int
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("skills")
+}
+
+model SwotAnalysis {
+  id                           String   @id @default(cuid())
+  userId                       String   @unique
+  strengths                    String
+  weaknesses                   String
+  opportunities                String
+  threats                      String
+  lowScoreSkills               String[]
+  skillsToDevelop              String[]
+  useStrengthsForOpportunities String
+  reduceWeaknessesAvoidThreats String
+  createdAt                    DateTime @default(now())
+  updatedAt                    DateTime @updatedAt
+  user                         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("swot_analysis")
+}
+
+model Action {
+  id          String         @id @default(cuid())
+  userId      String
+  title       String
+  description String         @default("")
+  quadrant    Int            @default(1)
+  status      ActionStatus   @default(TODO)
+  order       Int            @default(0)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  user        User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("actions")
+}
+
+model Objective {
+  id         String      @id @default(cuid())
+  userId     String
+  title      String
+  quarter    Int
+  year       Int
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  keyResults KeyResult[]
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("objectives")
+}
+
+model KeyResult {
+  id           String       @id @default(cuid())
+  objectiveId  String
+  title        String
+  description  String
+  targetValue  String
+  currentValue String       @default("0")
+  order        Int          @default(0)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  initiatives  Initiative[]
+  objective    Objective    @relation(fields: [objectiveId], references: [id], onDelete: Cascade)
+
+  @@map("key_results")
+}
+
+model Initiative {
+  id          String           @id @default(cuid())
+  keyResultId String
+  title       String
+  description String
+  startDate   DateTime?
+  endDate     DateTime?
+  priority    Int              @default(0)
+  status      InitiativeStatus @default(BACKLOG)
+  sprintId    String?
+  quadrant    Int?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  keyResult   KeyResult        @relation(fields: [keyResultId], references: [id], onDelete: Cascade)
+  sprint      Sprint?          @relation(fields: [sprintId], references: [id])
+  reviews     SprintReview[]
+
+  @@map("initiatives")
+}
+
+model Sprint {
+  id            String         @id @default(cuid())
+  userId        String
+  name          String
+  number        Int
+  startDate     DateTime
+  endDate       DateTime
+  status        SprintStatus   @default(PLANNING)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  initiatives   Initiative[]
+  retrospective Retrospective?
+  reviews       SprintReview[]
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sprints")
+}
+
+model SprintReview {
+  id           String     @id @default(cuid())
+  sprintId     String
+  initiativeId String
+  evaluation   String
+  notes        String?
+  createdAt    DateTime   @default(now())
+  initiative   Initiative @relation(fields: [initiativeId], references: [id], onDelete: Cascade)
+  sprint       Sprint     @relation(fields: [sprintId], references: [id], onDelete: Cascade)
+
+  @@unique([sprintId, initiativeId])
+  @@map("sprint_reviews")
+}
+
+model Retrospective {
+  id            String   @id @default(cuid())
+  sprintId      String   @unique
+  whatWentWell  String[]
+  whatToImprove String[]
+  actionItems   String[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  sprint        Sprint   @relation(fields: [sprintId], references: [id], onDelete: Cascade)
+
+  @@map("retrospectives")
+}
+
+model JourneyProgress {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  currentStep     Int      @default(1)
+  step1Completed  Boolean  @default(false)
+  step2Completed  Boolean  @default(false)
+  step3Completed  Boolean  @default(false)
+  step4Completed  Boolean  @default(false)
+  step5Completed  Boolean  @default(false)
+  overallProgress Int      @default(0)
+  lastActivityAt  DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("journey_progress")
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+}
+
+enum SalaryRange {
+  BELOW_6K
+  RANGE_6K_7K
+  RANGE_7K_8K
+  RANGE_8K_10K
+  ABOVE_10K
+}
+
+enum SkillCategory {
+  STRATEGIC
+  TECHNICAL
+  COMMUNICATION
+}
+
+enum InitiativeStatus {
+  BACKLOG
+  SPRINT
+  TODO
+  DOING
+  DONE
+}
+
+enum SprintStatus {
+  PLANNING
+  ACTIVE
+  REVIEW
+  COMPLETED
+}
+
+enum ActionStatus {
+  TODO
+  DOING
+  DONE
 }
