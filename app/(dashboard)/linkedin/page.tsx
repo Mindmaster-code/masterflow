@@ -7,7 +7,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
-import { ArrowLeft, Linkedin, Loader2, Sparkles, CheckCircle2, AlertCircle, Target, Lightbulb } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { ArrowLeft, Linkedin, Loader2, Sparkles, CheckCircle2, AlertCircle, Target, Lightbulb, FileUp, Plus } from 'lucide-react';
 
 interface AnalysisResult {
   pontosFortes: string[];
@@ -17,13 +18,16 @@ interface AnalysisResult {
 }
 
 export default function LinkedinPage() {
+  const router = useRouter();
   const [linkedinUrl, setLinkedinUrl] = useState('');
   const [profileContent, setProfileContent] = useState('');
   const [cargo, setCargo] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isParsingPdf, setIsParsingPdf] = useState(false);
   const [error, setError] = useState('');
   const [result, setResult] = useState<AnalysisResult | null>(null);
   const [showFallback, setShowFallback] = useState(false);
+  const [addedToKanban, setAddedToKanban] = useState<Set<number>>(new Set());
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,6 +60,52 @@ export default function LinkedinPage() {
       setError('Erro de conexão. Tente novamente.');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleAddToKanban = async (rec: { titulo: string; descricao: string }, index: number) => {
+    try {
+      const res = await fetch('/api/actions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: rec.titulo,
+          description: rec.descricao,
+          quadrant: 1,
+        }),
+      });
+      if (res.ok) {
+        setAddedToKanban(prev => new Set(prev).add(index));
+        router.refresh();
+      }
+    } catch {
+      // ignore
+    }
+  };
+
+  const handlePdfUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || file.type !== 'application/pdf') return;
+    setIsParsingPdf(true);
+    setError('');
+    try {
+      const formData = new FormData();
+      formData.append('pdf', file);
+      const res = await fetch('/api/linkedin/parse-pdf', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setProfileContent(data.text);
+      } else {
+        setError(data.error || 'Erro ao processar PDF');
+      }
+    } catch {
+      setError('Erro ao processar PDF');
+    } finally {
+      setIsParsingPdf(false);
+      e.target.value = '';
     }
   };
 
@@ -93,7 +143,7 @@ export default function LinkedinPage() {
             Análise do Perfil
           </CardTitle>
           <CardDescription>
-            O LinkedIn bloqueia acesso automático. A forma mais confiável é colar o conteúdo do seu perfil abaixo. Abra seu perfil no LinkedIn, selecione e copie o texto (About, Experiência, Skills) e cole aqui.
+            Cole o texto, importe o PDF (LinkedIn: More → Save to PDF) ou tente o link. O PDF é exportado em linkedin.com em More → Save to PDF.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -101,8 +151,27 @@ export default function LinkedinPage() {
             <div>
               <Label className="text-white/70">Conteúdo do seu perfil LinkedIn *</Label>
               <p className="text-xs text-white/40 mt-1 mb-2">
-                Abra seu perfil no LinkedIn, selecione todo o texto (About, Experiência, Skills) e cole aqui
+                Cole o texto, importe o PDF exportado do LinkedIn, ou tente o link
               </p>
+              <div className="flex gap-2 mb-2">
+                <label className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-white/70 hover:bg-white/10 cursor-pointer transition-colors">
+                  <FileUp className="w-4 h-4" />
+                  Importar PDF
+                  <input
+                    type="file"
+                    accept=".pdf"
+                    onChange={handlePdfUpload}
+                    disabled={isParsingPdf}
+                    className="hidden"
+                  />
+                </label>
+                {isParsingPdf && (
+                  <span className="flex items-center gap-2 text-sm text-teal-400">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Processando...
+                  </span>
+                )}
+              </div>
               <textarea
                 value={profileContent}
                 onChange={(e) => setProfileContent(e.target.value)}
@@ -254,7 +323,27 @@ export default function LinkedinPage() {
                         {rec.prioridade}
                       </Badge>
                     </div>
-                    <p className="text-sm text-white/60">{rec.descricao}</p>
+                    <p className="text-sm text-white/60 mb-3">{rec.descricao}</p>
+                    {addedToKanban.has(i) ? (
+                      <div className="flex items-center gap-2 text-sm text-emerald-400">
+                        <CheckCircle2 className="w-4 h-4" />
+                        Adicionado ao Kanban
+                        <Link href="/step5" className="text-teal-400 hover:underline ml-1">
+                          Ver Kanban →
+                        </Link>
+                      </div>
+                    ) : (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        className="text-xs border-teal-500/30 text-teal-400 hover:bg-teal-500/10"
+                        onClick={() => handleAddToKanban(rec, i)}
+                      >
+                        <Plus className="w-3 h-3 mr-1.5" />
+                        Adicionar no Kanban
+                      </Button>
+                    )}
                   </div>
                 ))}
               </div>
