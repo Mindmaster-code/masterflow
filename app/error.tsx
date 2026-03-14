@@ -10,6 +10,8 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const isDev = process.env.NODE_ENV === 'development';
+
   useEffect(() => {
     console.error('Application error:', error);
   }, [error]);
@@ -22,6 +24,11 @@ export default function Error({
         <p className="text-white/60 text-sm mb-6">
           Ocorreu um erro ao carregar a página. Tente novamente ou volte para a home.
         </p>
+        {isDev && (
+          <pre className="text-left text-xs text-red-400 bg-red-950/30 p-4 rounded-lg mb-6 overflow-auto max-h-40">
+            {error.message}
+          </pre>
+        )}
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button onClick={reset} className="premium-button">
             Tentar novamente

@@ -59,7 +59,12 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (session.user) {
-        (session.user as any).role = token.role;
+        let role = token.role;
+        if (!role && token.sub) {
+          const dbUser = await db.user.findUnique({ where: { id: token.sub }, select: { role: true } });
+          role = dbUser?.role ?? 'STUDENT';
+        }
+        (session.user as any).role = role ?? 'STUDENT';
         (session.user as any).id = token.sub;
       }
       return session;

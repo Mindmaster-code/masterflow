@@ -7,12 +7,11 @@ import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Users, TrendingUp, Eye, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 export default async function AdminStudentsPage() {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user || session.user.role !== 'ADMIN') {
+  if (!session?.user || session.user?.role !== 'ADMIN') {
     redirect('/dashboard');
   }
 
@@ -24,7 +23,6 @@ export default async function AdminStudentsPage() {
       _count: {
         select: {
           objectives: true,
-          sprints: true,
         },
       },
     },
@@ -129,13 +127,8 @@ export default async function AdminStudentsPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {students.map((student, index) => (
-                <motion.div
-                  key={student.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                >
+              {students.map((student) => (
+                <div key={student.id} className="animate-fade-in">
                   <Link href={`/admin/students/${student.id}`}>
                     <div className="premium-card p-6 hover:scale-[1.01] transition-all group cursor-pointer border-primary/20 hover:border-primary/40">
                       <div className="flex items-center justify-between">
@@ -170,9 +163,6 @@ export default async function AdminStudentsPage() {
                                 <span className="font-semibold text-primary">{student._count.objectives}</span> Objetivos
                               </div>
                               <div>
-                                <span className="font-semibold text-purple-400">{student._count.sprints}</span> Sprints
-                              </div>
-                              <div>
                                 Última atividade: <span className="text-foreground/80">
                                   {new Date(student.updatedAt).toLocaleDateString('pt-BR')}
                                 </span>
@@ -191,7 +181,7 @@ export default async function AdminStudentsPage() {
                       </div>
                     </div>
                   </Link>
-                </motion.div>
+                </div>
               ))}
             </div>
           )}

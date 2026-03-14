@@ -13,7 +13,7 @@ export function DashboardNav() {
 
   if (!session?.user) return null;
 
-  const isAdmin = session.user.role === 'ADMIN';
+  const isAdmin = session.user?.role === 'ADMIN';
   const navLinks = [
     { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { href: '/resumo', icon: TrendingUp, label: 'Resumo' },

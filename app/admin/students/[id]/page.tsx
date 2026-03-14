@@ -12,7 +12,7 @@ import { Progress } from '@/components/ui/progress';
 export default async function StudentDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const session = await getServerSession(authOptions);
 
-  if (!session?.user || session.user.role !== 'ADMIN') {
+  if (!session?.user || session.user?.role !== 'ADMIN') {
     redirect('/dashboard');
   }
 

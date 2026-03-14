@@ -14,7 +14,7 @@ export function UserMenu() {
 
   if (!session?.user) return null;
 
-  const isAdmin = session.user.role === 'ADMIN';
+  const isAdmin = session.user?.role === 'ADMIN';
   const initials = session.user.name
     ?.split(' ')
     .map(n => n[0])
