@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import {
   ArrowRight, Target, Brain, BarChart3, Rocket,
   TrendingUp, CheckCircle2, Sparkles, Kanban,
-  ChevronRight, Clock, CircleCheck,
+  ChevronRight, Clock, CircleCheck, Linkedin,
 } from 'lucide-react';
 
 /* ── Circular progress SVG ── */
@@ -120,8 +120,8 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* ── Hero Cards: Resumo + Kanban ── */}
-      <div className="grid md:grid-cols-2 gap-5">
+      {/* ── Hero Cards: Resumo + Kanban + LinkedIn ── */}
+      <div className="grid md:grid-cols-3 gap-5">
 
         {/* Resumo */}
         <Link href="/resumo" className="block group">
@@ -233,6 +233,48 @@ export default async function DashboardPage() {
                   </p>
                 </div>
               )}
+            </div>
+          </div>
+        </Link>
+
+        {/* Avaliar LinkedIn */}
+        <Link href="/linkedin" className="block group">
+          <div
+            className="relative overflow-hidden rounded-2xl border p-6 h-full cursor-pointer transition-all duration-300 hover:border-blue-500/40"
+            style={{
+              background: 'linear-gradient(135deg, rgba(10,102,194,0.1) 0%, rgba(0,65,130,0.05) 100%)',
+              borderColor: 'rgba(10,102,194,0.25)',
+            }}
+          >
+            <div className="absolute top-0 right-0 w-48 h-48 opacity-30" style={{ background: 'radial-gradient(circle, rgba(10,102,194,0.4) 0%, transparent 70%)', transform: 'translate(30%,-30%)' }} />
+
+            <div className="relative flex flex-col h-full gap-4">
+              <div className="flex items-start justify-between">
+                <div
+                  className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0"
+                  style={{
+                    background: 'linear-gradient(135deg, #0A66C2, #004182)',
+                    boxShadow: '0 8px 24px rgba(10,102,194,0.35)',
+                  }}
+                >
+                  <Linkedin className="w-6 h-6 text-white" />
+                </div>
+                <div className="flex items-center gap-1.5 text-xs font-bold text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                  Avaliar <ChevronRight className="w-3.5 h-3.5" />
+                </div>
+              </div>
+
+              <div>
+                <div className="text-[10px] font-bold tracking-widest uppercase text-blue-400/70 mb-1">Perfil Profissional</div>
+                <h2 className="text-xl font-bold text-white mb-1.5">Avaliar meu LinkedIn</h2>
+                <p className="text-sm text-white/45 leading-relaxed">
+                  Análise do seu perfil com pontos fortes, melhorias e plano de ação para atrair recrutadores.
+                </p>
+              </div>
+
+              <div className="mt-auto pt-3 border-t" style={{ borderColor: 'rgba(10,102,194,0.15)' }}>
+                <p className="text-xs text-white/30">Cole o link ou o conteúdo do perfil</p>
+              </div>
             </div>
           </div>
         </Link>
