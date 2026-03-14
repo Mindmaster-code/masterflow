@@ -93,13 +93,29 @@ export default function LinkedinPage() {
             Análise do Perfil
           </CardTitle>
           <CardDescription>
-            Cole o link do seu perfil ou o conteúdo (About, Experiência, Skills). Opcionalmente informe o cargo desejado para análise personalizada.
+            O LinkedIn bloqueia acesso automático. A forma mais confiável é colar o conteúdo do seu perfil abaixo. Abra seu perfil no LinkedIn, selecione e copie o texto (About, Experiência, Skills) e cole aqui.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <Label className="text-white/70">Link do LinkedIn</Label>
+              <Label className="text-white/70">Conteúdo do seu perfil LinkedIn *</Label>
+              <p className="text-xs text-white/40 mt-1 mb-2">
+                Abra seu perfil no LinkedIn, selecione todo o texto (About, Experiência, Skills) e cole aqui
+              </p>
+              <textarea
+                value={profileContent}
+                onChange={(e) => setProfileContent(e.target.value)}
+                placeholder="Cole aqui: About, Experiência, Skills, Formação..."
+                rows={8}
+                className="w-full rounded-lg bg-white/5 border border-white/10 p-3 text-white placeholder:text-white/30 text-sm resize-none focus:border-teal-500/50 focus:ring-1 focus:ring-teal-500/30"
+              />
+            </div>
+
+            <div>
+              <Label className="text-white/50 text-sm">
+                Ou tente o link (pode não funcionar)
+              </Label>
               <Input
                 type="url"
                 placeholder="https://linkedin.com/in/seu-usuario"
@@ -111,31 +127,9 @@ export default function LinkedinPage() {
 
             {showFallback && (
               <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20">
-                <p className="text-sm text-amber-200/90 mb-3">
-                  Não foi possível acessar o perfil automaticamente. Copie o texto do seu perfil (About, Experiência, Skills) e cole abaixo:
+                <p className="text-sm text-amber-200/90">
+                  O link não funcionou (LinkedIn bloqueia acesso automático). Use o campo acima para colar o conteúdo do seu perfil e clique em Analisar.
                 </p>
-                <textarea
-                  value={profileContent}
-                  onChange={(e) => setProfileContent(e.target.value)}
-                  placeholder="Cole aqui o conteúdo do seu perfil..."
-                  rows={6}
-                  className="w-full rounded-lg bg-white/5 border border-white/10 p-3 text-white placeholder:text-white/30 text-sm resize-none"
-                />
-              </div>
-            )}
-
-            {!showFallback && (
-              <div>
-                <Label className="text-white/50 text-sm">
-                  Ou cole o conteúdo do perfil (se o link não funcionar)
-                </Label>
-                <textarea
-                  value={profileContent}
-                  onChange={(e) => setProfileContent(e.target.value)}
-                  placeholder="About, Experiência, Skills..."
-                  rows={4}
-                  className="mt-1.5 w-full rounded-lg bg-white/5 border border-white/10 p-3 text-white placeholder:text-white/30 text-sm resize-none"
-                />
               </div>
             )}
 
