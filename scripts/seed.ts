@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
+import { seedRecommendations } from './seed-recommendations';
 
 const prisma = new PrismaClient();
 
@@ -47,6 +48,9 @@ async function main() {
   });
 
   console.log('✅ Aluno criado:', student.email);
+
+  await seedRecommendations();
+
   console.log('\n📧 Credenciais:');
   console.log('Admin: admin@masterflow.com / admin123');
   console.log('Aluno: aluno@masterflow.com / senha123');

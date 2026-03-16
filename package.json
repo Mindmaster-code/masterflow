@@ -13,7 +13,8 @@
     "postinstall": "prisma generate",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "db:seed": "tsx scripts/seed.ts"
+    "db:seed": "tsx scripts/seed.ts",
+    "db:seed-trello": "tsx scripts/import-trello-recommendations.ts"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",

@@ -346,3 +346,35 @@ enum ActionStatus {
   DOING
   DONE
 }
+
+// Livros e filmes recomendados por skill (fonte: Trello ou seed)
+model RecCategory {
+  id        String         @id @default(cuid())
+  name      String         // ex: "Soft Skill: Boa Comunicação"
+  keywords  String[]       // ["comunicação", "comunicacao", "oratória", ...]
+  recs      Recommendation[]
+
+  @@map("rec_categories")
+}
+
+model Recommendation {
+  id         String      @id @default(cuid())
+  categoryId String
+  type       RecType     // BOOK | MOVIE
+  title      String
+  creator    String?     // autor/diretor
+  coverUrl   String?
+  why        String      @db.Text
+  url        String?
+  order      Int         @default(0)
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  category   RecCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@map("recommendations")
+}
+
+enum RecType {
+  BOOK
+  MOVIE
+}
