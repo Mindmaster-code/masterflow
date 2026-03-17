@@ -18,14 +18,14 @@ function RecCard({ rec }: { rec: SkillRec }) {
   return (
     <div
       className="flex gap-3 p-3 rounded-xl"
-      style={{ background: 'rgba(13,148,136,0.07)', border: '1px solid rgba(13,148,136,0.15)' }}
+      style={{ background: 'rgba(0,151,167,0.07)', border: '1px solid rgba(0,151,167,0.15)' }}
       onClick={(e) => e.stopPropagation()}
       onPointerDown={(e) => e.stopPropagation()}
     >
       {/* Cover */}
       <div
         className="flex-shrink-0 w-12 h-[72px] rounded-lg overflow-hidden flex items-center justify-center"
-        style={{ background: 'rgba(13,148,136,0.12)' }}
+        style={{ background: 'rgba(0,151,167,0.12)' }}
       >
         {!imgError && rec.coverUrl ? (
           <img

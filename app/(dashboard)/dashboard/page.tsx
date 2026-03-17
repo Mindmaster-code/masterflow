@@ -27,8 +27,8 @@ function CircleProgress({ value }: { value: number }) {
       />
       <defs>
         <linearGradient id="tealGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#0D9488" />
-          <stop offset="100%" stopColor="#06B6D4" />
+          <stop offset="0%" stopColor="#0097A7" />
+          <stop offset="100%" stopColor="#9E9E9E" />
         </linearGradient>
       </defs>
     </svg>
@@ -57,7 +57,7 @@ export default async function DashboardPage() {
       <div className="min-h-[80vh] flex items-center justify-center p-6">
         <div className="max-w-md w-full text-center">
           <div className="w-20 h-20 rounded-2xl brand-gradient flex items-center justify-center mx-auto mb-6 shadow-2xl"
-            style={{ boxShadow: '0 16px 48px rgba(13,148,136,0.35)' }}>
+            style={{ boxShadow: '0 16px 48px rgba(0,151,167,0.35)' }}>
             <Sparkles className="w-10 h-10 text-white" />
           </div>
           <h1 className="text-4xl font-bold mb-3">
@@ -78,10 +78,10 @@ export default async function DashboardPage() {
   }
 
   const journeySteps = [
-    { id: 1, path: '/step1', title: 'Ponto de Partida',  desc: 'Perfil e Desafios',   icon: Target,   completed: progress.step1Completed, color: 'from-teal-500 to-cyan-500',    glow: 'rgba(20,184,166,0.3)'  },
-    { id: 2, path: '/step2', title: 'Auto-Conhecimento', desc: 'Metas de Carreira',   icon: Brain,    completed: progress.step2Completed, color: 'from-cyan-500 to-sky-500',     glow: 'rgba(6,182,212,0.3)'   },
-    { id: 3, path: '/step3', title: 'Mapeamento',        desc: 'Skills e SWOT',       icon: BarChart3, completed: progress.step3Completed, color: 'from-sky-500 to-blue-500',    glow: 'rgba(14,165,233,0.3)'  },
-    { id: 4, path: '/step5', title: 'Plano de Ação',     desc: 'Execute suas ações',  icon: Rocket,   completed: progress.step5Completed, color: 'from-teal-600 to-emerald-500', glow: 'rgba(13,148,136,0.3)'  },
+    { id: 1, path: '/step1', title: 'Ponto de Partida',  desc: 'Perfil e Desafios',   icon: Target,   completed: progress.step1Completed, color: 'from-[#0097A7] to-[#00ACC1]', glow: 'rgba(0,151,167,0.3)' },
+    { id: 2, path: '/step2', title: 'Auto-Conhecimento', desc: 'Metas de Carreira',   icon: Brain,    completed: progress.step2Completed, color: 'from-[#0097A7] to-[#9E9E9E]', glow: 'rgba(0,151,167,0.3)' },
+    { id: 3, path: '/step3', title: 'Mapeamento',        desc: 'Skills e SWOT',       icon: BarChart3, completed: progress.step3Completed, color: 'from-[#9E9E9E] to-[#0097A7]', glow: 'rgba(158,158,158,0.3)' },
+    { id: 4, path: '/step5', title: 'Plano de Ação',     desc: 'Execute suas ações',  icon: Rocket,   completed: progress.step5Completed, color: 'from-[#0097A7] to-[#4DD0E1]', glow: 'rgba(0,151,167,0.3)' },
   ];
 
   const completedSteps = journeySteps.filter(s => s.completed).length;
@@ -94,7 +94,7 @@ export default async function DashboardPage() {
       {/* ── Header ── */}
       <div className="flex items-end justify-between gap-4">
         <div>
-          <p className="text-xs font-bold uppercase tracking-widest text-teal-400/70 mb-1">Olá de volta</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-[#0097A7]/70 mb-1">Olá de volta</p>
           <h1 className="text-3xl md:text-4xl font-bold">
             <span className="brand-gradient-text">{firstName}</span>
             <span className="text-white/85"> 👋</span>
@@ -126,10 +126,10 @@ export default async function DashboardPage() {
         {/* Resumo */}
         <Link href="/resumo" className="block group">
           <div
-            className="relative overflow-hidden rounded-2xl border p-6 h-full cursor-pointer transition-all duration-300 hover:border-teal-500/40"
+            className="relative overflow-hidden rounded-2xl border p-6 h-full cursor-pointer transition-all duration-300 hover:border-[#0097A7]/40"
             style={{
-              background: 'linear-gradient(135deg, rgba(13,148,136,0.1) 0%, rgba(6,182,212,0.05) 100%)',
-              borderColor: 'rgba(13,148,136,0.25)',
+              background: 'linear-gradient(135deg, rgba(0,151,167,0.1) 0%, rgba(158,158,158,0.05) 100%)',
+              borderColor: 'rgba(0,151,167,0.25)',
             }}
           >
             {/* Glow orb */}
@@ -138,16 +138,16 @@ export default async function DashboardPage() {
             <div className="relative flex flex-col h-full gap-4">
               <div className="flex items-start justify-between">
                 <div className="w-12 h-12 rounded-2xl brand-gradient flex items-center justify-center shadow-xl flex-shrink-0"
-                  style={{ boxShadow: '0 8px 24px rgba(13,148,136,0.35)' }}>
+                  style={{ boxShadow: '0 8px 24px rgba(0,151,167,0.35)' }}>
                   <TrendingUp className="w-6 h-6 text-white" />
                 </div>
-                <div className="flex items-center gap-1.5 text-xs font-bold text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="flex items-center gap-1.5 text-xs font-bold text-[#0097A7] opacity-0 group-hover:opacity-100 transition-opacity">
                   Ver tudo <ChevronRight className="w-3.5 h-3.5" />
                 </div>
               </div>
 
               <div>
-                <div className="text-[10px] font-bold tracking-widest uppercase text-teal-400/70 mb-1">Análise Completa</div>
+                <div className="text-[10px] font-bold tracking-widest uppercase text-[#0097A7]/70 mb-1">Análise Completa</div>
                 <h2 className="text-xl font-bold text-white mb-1.5">Resumo da Jornada</h2>
                 <p className="text-sm text-white/45 leading-relaxed">
                   Gráficos de skills, análise SWOT, gap de competências e consultoria personalizada de carreira.
@@ -155,7 +155,7 @@ export default async function DashboardPage() {
               </div>
 
               {/* Mini stats */}
-              <div className="flex gap-3 mt-auto pt-3 border-t" style={{ borderColor: 'rgba(13,148,136,0.15)' }}>
+              <div className="flex gap-3 mt-auto pt-3 border-t" style={{ borderColor: 'rgba(0,151,167,0.15)' }}>
                 {[
                   { value: `${completedSteps}/4`, label: 'Etapas' },
                   { value: `${progress.overallProgress}%`, label: 'Progresso' },
@@ -177,9 +177,9 @@ export default async function DashboardPage() {
             className="relative overflow-hidden rounded-2xl border p-6 h-full cursor-pointer transition-all duration-300"
             style={{
               background: kanbanAccessible
-                ? 'linear-gradient(135deg, rgba(6,182,212,0.08) 0%, rgba(14,165,233,0.05) 100%)'
+                ? 'linear-gradient(135deg, rgba(158,158,158,0.08) 0%, rgba(14,165,233,0.05) 100%)'
                 : 'rgba(255,255,255,0.02)',
-              borderColor: kanbanAccessible ? 'rgba(6,182,212,0.22)' : 'rgba(255,255,255,0.06)',
+              borderColor: kanbanAccessible ? 'rgba(158,158,158,0.22)' : 'rgba(255,255,255,0.06)',
               opacity: kanbanAccessible ? 1 : 0.5,
             }}
           >
@@ -189,8 +189,8 @@ export default async function DashboardPage() {
               <div className="flex items-start justify-between">
                 <div className="w-12 h-12 rounded-2xl flex items-center justify-center shadow-xl flex-shrink-0"
                   style={{
-                    background: kanbanAccessible ? 'linear-gradient(135deg,#06B6D4,#0EA5E9)' : 'rgba(255,255,255,0.06)',
-                    boxShadow: kanbanAccessible ? '0 8px 24px rgba(6,182,212,0.3)' : 'none',
+                    background: kanbanAccessible ? 'linear-gradient(135deg,#0097A7,#9E9E9E)' : 'rgba(255,255,255,0.06)',
+                    boxShadow: kanbanAccessible ? '0 8px 24px rgba(0,151,167,0.3)' : 'none',
                   }}>
                   <Kanban className="w-6 h-6 text-white" />
                 </div>
@@ -198,14 +198,14 @@ export default async function DashboardPage() {
                   <span className="text-[10px] font-bold tracking-wider text-white/25 uppercase bg-white/5 px-2 py-1 rounded-lg">Bloqueado</span>
                 )}
                 {kanbanAccessible && (
-                  <div className="flex items-center gap-1.5 text-xs font-bold text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-[#0097A7] opacity-0 group-hover:opacity-100 transition-opacity">
                     Abrir <ChevronRight className="w-3.5 h-3.5" />
                   </div>
                 )}
               </div>
 
               <div>
-                <div className="text-[10px] font-bold tracking-widest uppercase text-cyan-400/70 mb-1">Plano de Ação</div>
+                <div className="text-[10px] font-bold tracking-widest uppercase text-[#0097A7]/70 mb-1">Plano de Ação</div>
                 <h2 className="text-xl font-bold text-white mb-1.5">Kanban de Carreira</h2>
                 <p className="text-sm text-white/45 leading-relaxed">
                   Gerencie suas ações prioritárias, arraste entre colunas e acompanhe sua execução.
@@ -214,11 +214,11 @@ export default async function DashboardPage() {
 
               {/* Kanban mini preview */}
               {kanbanAccessible && totalActions > 0 ? (
-                <div className="flex gap-3 mt-auto pt-3 border-t" style={{ borderColor: 'rgba(6,182,212,0.12)' }}>
+                <div className="flex gap-3 mt-auto pt-3 border-t" style={{ borderColor: 'rgba(158,158,158,0.12)' }}>
                   {[
                     { value: todoActions,  label: 'A Fazer',    color: 'text-white/50'   },
-                    { value: doingActions, label: 'Em Andamento', color: 'text-cyan-400' },
-                    { value: doneActions,  label: 'Concluídas',  color: 'text-emerald-400' },
+                    { value: doingActions, label: 'Em Andamento', color: 'text-[#0097A7]' },
+                    { value: doneActions,  label: 'Concluídas',  color: 'text-[#0097A7]' },
                   ].map(s => (
                     <div key={s.label}>
                       <p className={`text-lg font-bold ${s.color}`}>{s.value}</p>
@@ -227,7 +227,7 @@ export default async function DashboardPage() {
                   ))}
                 </div>
               ) : (
-                <div className="mt-auto pt-3 border-t" style={{ borderColor: 'rgba(6,182,212,0.12)' }}>
+                <div className="mt-auto pt-3 border-t" style={{ borderColor: 'rgba(158,158,158,0.12)' }}>
                   <p className="text-xs text-white/30">
                     {kanbanAccessible ? 'Nenhuma ação criada ainda' : 'Complete as etapas anteriores para desbloquear'}
                   </p>
@@ -310,7 +310,7 @@ export default async function DashboardPage() {
                 <div className={`
                   relative overflow-hidden rounded-2xl border p-5 h-full transition-all duration-300
                   ${isCurrent
-                    ? 'hover:border-teal-500/40 hover:-translate-y-1'
+                    ? 'hover:border-[#0097A7]/40 hover:-translate-y-1'
                     : isAccessible
                     ? 'hover:border-white/15 hover:-translate-y-1'
                     : 'opacity-30 cursor-default'
@@ -318,23 +318,23 @@ export default async function DashboardPage() {
                 `}
                   style={{
                     background: isCurrent
-                      ? 'linear-gradient(145deg, rgba(13,148,136,0.1) 0%, rgba(6,182,212,0.04) 100%)'
+                      ? 'linear-gradient(145deg, rgba(0,151,167,0.1) 0%, rgba(158,158,158,0.04) 100%)'
                       : 'rgba(255,255,255,0.02)',
-                    borderColor: isCurrent ? 'rgba(13,148,136,0.3)' : 'rgba(255,255,255,0.06)',
-                    boxShadow: isCurrent ? '0 0 0 1px rgba(13,148,136,0.12), 0 12px 32px rgba(13,148,136,0.12)' : 'none',
+                    borderColor: isCurrent ? 'rgba(0,151,167,0.3)' : 'rgba(255,255,255,0.06)',
+                    boxShadow: isCurrent ? '0 0 0 1px rgba(0,151,167,0.12), 0 12px 32px rgba(0,151,167,0.12)' : 'none',
                   }}
                 >
                   {/* Current pulse */}
                   {isCurrent && (
-                    <span className="absolute top-3 right-3 flex items-center gap-1 text-[10px] font-bold text-teal-400 uppercase tracking-wider">
-                      <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+                    <span className="absolute top-3 right-3 flex items-center gap-1 text-[10px] font-bold text-[#0097A7] uppercase tracking-wider">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#0097A7] animate-pulse" />
                       Atual
                     </span>
                   )}
 
                   <div
-                    className={`w-11 h-11 rounded-xl mb-4 flex items-center justify-center bg-gradient-to-br ${step.completed ? 'from-emerald-500 to-teal-600' : step.color}`}
-                    style={{ boxShadow: `0 6px 16px ${step.completed ? 'rgba(16,185,129,0.25)' : step.glow}` }}
+                    className={`w-11 h-11 rounded-xl mb-4 flex items-center justify-center bg-gradient-to-br ${step.completed ? 'from-[#0097A7] to-[#9E9E9E]' : step.color}`}
+                    style={{ boxShadow: `0 6px 16px ${step.completed ? 'rgba(0,151,167,0.25)' : step.glow}` }}
                   >
                     {step.completed
                       ? <CheckCircle2 className="w-5.5 h-5.5 text-white" />
@@ -348,16 +348,16 @@ export default async function DashboardPage() {
 
                   <div className={`inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-full border
                     ${step.completed
-                      ? 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20'
+                      ? 'text-[#0097A7] bg-[#0097A7]/10 border-[#0097A7]/20'
                       : isCurrent
-                      ? 'text-teal-400 bg-teal-500/10 border-teal-500/20'
+                      ? 'text-[#0097A7] bg-[#0097A7]/10 border-[#0097A7]/20'
                       : 'text-white/25 bg-white/3 border-white/6'
                     }`}
                   >
                     {step.completed
                       ? <><CircleCheck className="w-3 h-3" /> Concluído</>
                       : isCurrent
-                      ? <><span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" /> Em andamento</>
+                      ? <><span className="w-1.5 h-1.5 rounded-full bg-[#0097A7] animate-pulse" /> Em andamento</>
                       : <>Bloqueado</>
                     }
                   </div>

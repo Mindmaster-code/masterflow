@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import Image from 'next/image';
 import { LogIn, Loader2, Mail, Lock, ArrowLeft, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -61,15 +62,7 @@ export default function LoginPage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <div className="flex items-center gap-3">
-              <div
-                className="w-10 h-10 rounded-xl brand-gradient flex items-center justify-center"
-                style={{ boxShadow: '0 6px 16px rgba(13,148,136,0.3)' }}
-              >
-                <Sparkles className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-2xl font-bold tracking-tight brand-gradient-text">MasterFlow</span>
-            </div>
+            <Image src="/mindmaster-logo.png" alt="MasterFlow" width={140} height={75} className="h-12 w-auto" />
           </div>
           <h1 className="text-3xl font-bold text-white mb-1.5">
             Bem-vindo ao <span className="brand-gradient-text">MasterFlow</span>
@@ -80,7 +73,7 @@ export default function LoginPage() {
         {/* Card */}
         <div className="premium-card p-6 md:p-8">
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-9 h-9 rounded-xl brand-gradient flex items-center justify-center" style={{ boxShadow: '0 6px 16px rgba(13,148,136,0.3)' }}>
+            <div className="w-9 h-9 rounded-xl brand-gradient flex items-center justify-center" style={{ boxShadow: '0 6px 16px rgba(0,151,167,0.3)' }}>
               <LogIn className="w-4.5 h-4.5 text-white" />
             </div>
             <div>
@@ -157,7 +150,7 @@ export default function LoginPage() {
             <div>
               <p className="text-sm font-semibold text-teal-300 mb-1">Primeiro acesso?</p>
               <p className="text-xs text-white/45 leading-relaxed">
-                Use o email que você recebeu da <span className="text-white/70 font-medium">MindMaster</span> para acessar a plataforma.
+                Use o email que você recebeu da <span className="text-white/70 font-medium">MindMaster Treinamentos</span> para acessar a plataforma.
               </p>
               <p className="text-xs text-white/30 mt-2 pt-2 border-t border-white/5">
                 Teste: aluno@masterflow.com · senha123

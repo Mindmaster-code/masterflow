@@ -15,10 +15,10 @@ interface JourneyProgressProps {
 }
 
 const stepConfig = [
-  { gradient: 'from-teal-500 to-cyan-500',  glow: 'rgba(20,184,166,0.4)', activeRing: 'rgba(20,184,166,0.25)' },
-  { gradient: 'from-cyan-500 to-sky-500',   glow: 'rgba(6,182,212,0.4)',  activeRing: 'rgba(6,182,212,0.25)'  },
-  { gradient: 'from-sky-500 to-blue-500',   glow: 'rgba(14,165,233,0.4)', activeRing: 'rgba(14,165,233,0.25)' },
-  { gradient: 'from-teal-600 to-emerald-500', glow: 'rgba(13,148,136,0.4)', activeRing: 'rgba(13,148,136,0.25)' },
+  { gradient: 'from-[#0097A7] to-[#00ACC1]', glow: 'rgba(0,151,167,0.4)', activeRing: 'rgba(0,151,167,0.25)' },
+  { gradient: 'from-[#0097A7] to-[#9E9E9E]', glow: 'rgba(0,151,167,0.4)', activeRing: 'rgba(0,151,167,0.25)' },
+  { gradient: 'from-[#9E9E9E] to-[#0097A7]', glow: 'rgba(158,158,158,0.4)', activeRing: 'rgba(158,158,158,0.25)' },
+  { gradient: 'from-[#0097A7] to-[#4DD0E1]', glow: 'rgba(0,151,167,0.4)', activeRing: 'rgba(0,151,167,0.25)' },
 ];
 
 export function JourneyProgress({
@@ -89,7 +89,7 @@ export function JourneyProgress({
                     relative z-10 w-16 h-16 md:w-18 md:h-18 rounded-2xl flex items-center justify-center
                     transition-all duration-500 mb-3
                     ${isCompleted
-                      ? `bg-gradient-to-br from-emerald-500 to-teal-600`
+                      ? `bg-gradient-to-br from-[#0097A7] to-[#9E9E9E]`
                       : isCurrent
                       ? `bg-gradient-to-br ${cfg.gradient}`
                       : isLocked
@@ -99,7 +99,7 @@ export function JourneyProgress({
                   `}
                   style={{
                     boxShadow: isCompleted
-                      ? '0 8px 24px rgba(16,185,129,0.4)'
+                      ? '0 8px 24px rgba(0,151,167,0.4)'
                       : isCurrent
                       ? `0 8px 24px ${cfg.glow}, 0 0 0 4px ${cfg.activeRing}`
                       : undefined,
@@ -124,7 +124,7 @@ export function JourneyProgress({
                 {/* Label */}
                 <div className="text-center">
                   <p className={`text-xs md:text-sm font-semibold leading-tight mb-1.5
-                    ${isCurrent ? 'text-teal-400' : isCompleted ? 'text-white/70' : 'text-white/30'}
+                    ${isCurrent ? 'text-[#0097A7]' : isCompleted ? 'text-white/70' : 'text-white/30'}
                   `}>
                     {step.shortLabel}
                   </p>
@@ -134,13 +134,13 @@ export function JourneyProgress({
                       initial={{ opacity: 0, scale: 0.85 }}
                       animate={{ opacity: 1, scale: 1 }}
                       className="px-2.5 py-1 rounded-full text-xs font-bold text-white"
-                      style={{ background: 'linear-gradient(135deg, #0D9488, #06B6D4)' }}
+                      style={{ background: 'linear-gradient(135deg, #0097A7, #9E9E9E)' }}
                     >
                       ATUAL
                     </motion.div>
                   )}
                   {isCompleted && !isCurrent && (
-                    <div className="px-2.5 py-1 rounded-full text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20">
+                    <div className="px-2.5 py-1 rounded-full text-xs font-semibold text-[#0097A7] bg-[#0097A7]/10 border border-[#0097A7]/20">
                       ✓ Completo
                     </div>
                   )}
@@ -157,11 +157,11 @@ export function JourneyProgress({
       </div>
 
       {/* Footer stats */}
-      <div className="mt-8 pt-6 border-t grid grid-cols-3 gap-4 text-center" style={{ borderColor: 'rgba(13,148,136,0.12)' }}>
+      <div className="mt-8 pt-6 border-t grid grid-cols-3 gap-4 text-center" style={{ borderColor: 'rgba(0,151,167,0.12)' }}>
         {[
-          { value: completedCount, label: 'Concluídas', color: 'text-emerald-400' },
-          { value: currentStep,    label: 'Etapa Atual', color: 'text-teal-400'  },
-          { value: 4 - completedCount, label: 'Restantes', color: 'text-cyan-400' },
+                  { value: completedCount, label: 'Concluídas', color: 'text-[#0097A7]' },
+          { value: currentStep,    label: 'Etapa Atual', color: 'text-[#0097A7]'  },
+          { value: 4 - completedCount, label: 'Restantes', color: 'text-[#9E9E9E]' },
         ].map(({ value, label, color }) => (
           <div key={label}>
             <p className={`text-2xl font-bold ${color}`}>{value}</p>

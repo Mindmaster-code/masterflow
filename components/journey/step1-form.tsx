@@ -182,9 +182,9 @@ export function Step1Form({
           onClick={onAdd}
           className="h-9 w-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all hover:opacity-80"
           style={{
-            background: 'rgba(13,148,136,0.15)',
-            border: '1px solid rgba(13,148,136,0.25)',
-            color: 'rgb(20,184,166)',
+            background: 'rgba(0,151,167,0.15)',
+            border: '1px solid rgba(0,151,167,0.25)',
+            color: 'rgb(0,151,167)',
           }}
         >
           <Plus className="w-4 h-4" />
@@ -197,8 +197,8 @@ export function Step1Form({
               key={index}
               className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold"
               style={{
-                background: 'rgba(13,148,136,0.1)',
-                border: '1px solid rgba(13,148,136,0.2)',
+                background: 'rgba(0,151,167,0.1)',
+                border: '1px solid rgba(0,151,167,0.2)',
                 color: 'rgba(255,255,255,0.7)',
               }}
             >
@@ -233,7 +233,7 @@ export function Step1Form({
               className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold transition-all"
               style={
                 isActive
-                  ? { background: 'rgba(13,148,136,0.15)', border: '1px solid rgba(13,148,136,0.3)', color: 'rgb(20,184,166)' }
+                  ? { background: 'rgba(0,151,167,0.15)', border: '1px solid rgba(0,151,167,0.3)', color: 'rgb(0,151,167)' }
                   : isCompleted
                   ? { background: 'rgba(16,185,129,0.08)', border: '1px solid rgba(16,185,129,0.2)', color: 'rgba(52,211,153,0.8)' }
                   : { background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.25)' }
@@ -270,7 +270,7 @@ export function Step1Form({
             >
               <div
                 className="px-5 py-3.5 flex items-center gap-3"
-                style={{ background: 'rgba(13,148,136,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
+                style={{ background: 'rgba(0,151,167,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
               >
                 <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(20,184,166,1)' }} />
                 <p className="text-sm font-bold text-white/80">Informações Pessoais</p>
@@ -327,7 +327,7 @@ export function Step1Form({
             >
               <div
                 className="px-5 py-3.5 flex items-center gap-3"
-                style={{ background: 'rgba(13,148,136,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
+                style={{ background: 'rgba(0,151,167,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
               >
                 <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(20,184,166,1)' }} />
                 <p className="text-sm font-bold text-white/80">Faixa Salarial Atual *</p>
@@ -346,9 +346,9 @@ export function Step1Form({
                         style={
                           isSelected
                             ? {
-                                border: '1px solid rgba(13,148,136,0.4)',
-                                background: 'rgba(13,148,136,0.1)',
-                                color: 'rgb(20,184,166)',
+                                border: '1px solid rgba(0,151,167,0.4)',
+                                background: 'rgba(0,151,167,0.1)',
+                                color: 'rgb(0,151,167)',
                               }
                             : {
                                 border: '1px solid rgba(255,255,255,0.1)',
@@ -382,7 +382,7 @@ export function Step1Form({
             >
               <div
                 className="px-5 py-3.5 flex items-center gap-3"
-                style={{ background: 'rgba(13,148,136,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
+                style={{ background: 'rgba(0,151,167,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
               >
                 <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(20,184,166,1)' }} />
                 <p className="text-sm font-bold text-white/80">Qualificação Profissional</p>
@@ -429,7 +429,7 @@ export function Step1Form({
             >
               <div
                 className="px-5 py-3.5 flex items-center gap-3"
-                style={{ background: 'rgba(13,148,136,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
+                style={{ background: 'rgba(0,151,167,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
               >
                 <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(20,184,166,1)' }} />
                 <p className="text-sm font-bold text-white/80">Contexto e Motivação</p>
@@ -471,7 +471,7 @@ export function Step1Form({
             >
               <div
                 className="px-5 py-3.5 flex items-center gap-3"
-                style={{ background: 'rgba(13,148,136,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
+                style={{ background: 'rgba(0,151,167,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
               >
                 <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(20,184,166,1)' }} />
                 <p className="text-sm font-bold text-white/80">Atitudes para vencer os desafios</p>

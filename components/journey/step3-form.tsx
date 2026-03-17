@@ -22,8 +22,8 @@ interface Step3FormProps {
 const CATEGORY_META: Record<string, { label: string; accent: string; bg: string }> = {
   STRATEGIC: {
     label: 'Competências Estratégicas',
-    accent: 'rgba(13,148,136,1)',
-    bg: 'rgba(13,148,136,0.07)',
+    accent: 'rgba(0,151,167,1)',
+    bg: 'rgba(0,151,167,0.07)',
   },
   TECHNICAL: {
     label: 'Competências Técnicas',
@@ -93,7 +93,7 @@ const CustomRadarTooltip = ({ active, payload }: any) => {
   const meta = getScoreMeta(value);
   return (
     <div className="px-3 py-2 rounded-lg text-xs"
-      style={{ background: 'rgba(6,13,24,0.95)', border: '1px solid rgba(13,148,136,0.25)' }}>
+      style={{ background: 'rgba(6,13,24,0.95)', border: '1px solid rgba(0,151,167,0.25)' }}>
       <p className="font-bold text-white/80 mb-0.5">{skill}</p>
       <p style={{ color: meta.color }}>{value}/10 · {meta.label}</p>
     </div>
@@ -288,7 +288,7 @@ export function Step3Form({ initialSkills, userId }: Step3FormProps) {
 
           {/* Strong skills */}
           {strong.some(([, s]) => s >= 7) && (
-            <div className="rounded-2xl p-4" style={{ background: 'rgba(13,148,136,0.05)', border: '1px solid rgba(13,148,136,0.15)' }}>
+            <div className="rounded-2xl p-4" style={{ background: 'rgba(0,151,167,0.05)', border: '1px solid rgba(0,151,167,0.15)' }}>
               <p className="text-xs font-bold text-teal-400/80 uppercase tracking-widest mb-3 flex items-center gap-1.5">
                 <TrendingUp className="w-3.5 h-3.5" />
                 Pontos Fortes
@@ -312,7 +312,7 @@ export function Step3Form({ initialSkills, userId }: Step3FormProps) {
             onClick={handleSubmit}
             disabled={isLoading || saveSuccess}
             className="w-full py-3 rounded-xl text-sm font-semibold text-white transition-all hidden lg:flex items-center justify-center gap-2"
-            style={{ background: saveSuccess ? 'rgba(16,185,129,0.2)' : 'rgba(13,148,136,0.15)', border: `1px solid ${saveSuccess ? 'rgba(16,185,129,0.3)' : 'rgba(13,148,136,0.25)'}` }}
+            style={{ background: saveSuccess ? 'rgba(16,185,129,0.2)' : 'rgba(0,151,167,0.15)', border: `1px solid ${saveSuccess ? 'rgba(16,185,129,0.3)' : 'rgba(0,151,167,0.25)'}` }}
           >
             {isLoading ? <><Loader2 className="w-4 h-4 animate-spin" /> Salvando...</> :
              saveSuccess ? <><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Salvo!</> :

@@ -642,7 +642,7 @@ export function Step5Simplified({ initiatives, userId, useActionsApi, context }:
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             className="rounded-2xl p-6"
-            style={{ background: 'linear-gradient(135deg, rgba(13,148,136,0.15) 0%, rgba(6,182,212,0.10) 100%)', border: '1px solid rgba(13,148,136,0.3)' }}
+            style={{ background: 'linear-gradient(135deg, rgba(0,151,167,0.15) 0%, rgba(158,158,158,0.10) 100%)', border: '1px solid rgba(0,151,167,0.3)' }}
           >
             <div className="flex flex-col md:flex-row items-start md:items-center gap-5">
               <div className="text-5xl flex-shrink-0">🎉</div>
@@ -651,7 +651,7 @@ export function Step5Simplified({ initiatives, userId, useActionsApi, context }:
                   {context?.userName ? `${context.userName}, sua` : 'Sua'} jornada foi concluída!
                 </h3>
                 <p className="text-white/60 text-sm">
-                  Você completou todas as etapas da MasterFlow
+                  Você completou todas as etapas do MasterFlow
                   {context?.desiredRole ? ` rumo a ${context.desiredRole}` : ''}.
                   Continue executando seu plano de ação e revise seu progresso no Resumo.
                 </p>
@@ -660,7 +660,7 @@ export function Step5Simplified({ initiatives, userId, useActionsApi, context }:
                 <button
                   onClick={() => router.push('/resumo')}
                   className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white"
-                  style={{ background: 'linear-gradient(135deg, #0D9488, #0EA5E9)', boxShadow: '0 6px 20px rgba(13,148,136,0.35)' }}
+                  style={{ background: 'linear-gradient(135deg, #0097A7, #00ACC1)', boxShadow: '0 6px 20px rgba(0,151,167,0.35)' }}
                 >
                   <TrendingUp className="w-4 h-4" />
                   Ver Resumo
@@ -686,11 +686,11 @@ export function Step5Simplified({ initiatives, userId, useActionsApi, context }:
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             className="rounded-2xl p-6"
-            style={{ background: 'rgba(13,148,136,0.07)', border: '1px solid rgba(13,148,136,0.18)' }}
+            style={{ background: 'rgba(0,151,167,0.07)', border: '1px solid rgba(0,151,167,0.18)' }}
           >
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center"
-                style={{ background: 'rgba(13,148,136,0.15)' }}>
+                style={{ background: 'rgba(0,151,167,0.15)' }}>
                 <Info className="w-5 h-5 text-teal-400" />
               </div>
               <div className="flex-1">
@@ -962,7 +962,7 @@ export function Step5Simplified({ initiatives, userId, useActionsApi, context }:
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="rounded-2xl p-5"
-          style={{ background: 'rgba(13,148,136,0.05)', border: '1px solid rgba(13,148,136,0.15)' }}
+          style={{ background: 'rgba(0,151,167,0.05)', border: '1px solid rgba(0,151,167,0.15)' }}
         >
           <p className="text-teal-400 font-semibold text-sm mb-3 flex items-center gap-2">
             <TrendingUp className="w-4 h-4" />

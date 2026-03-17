@@ -199,7 +199,7 @@ export default async function Step5Page() {
 
         <div className="flex items-start gap-5">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-600 to-emerald-500 flex items-center justify-center flex-shrink-0 shadow-2xl animate-float"
-            style={{ boxShadow: '0 12px 32px rgba(13,148,136,0.35)' }}>
+            style={{ boxShadow: '0 12px 32px rgba(0,151,167,0.35)' }}>
             <Rocket className="w-7 h-7 text-white" />
           </div>
           <div>

@@ -37,7 +37,7 @@ export function UserMenu() {
         >
           <div
             className="w-8 h-8 rounded-lg brand-gradient flex items-center justify-center text-white font-bold text-xs flex-shrink-0"
-            style={{ boxShadow: '0 3px 10px rgba(13,148,136,0.25)' }}
+            style={{ boxShadow: '0 3px 10px rgba(0,151,167,0.25)' }}
           >
             {initials}
           </div>
@@ -67,7 +67,7 @@ export function UserMenu() {
             <div className="flex items-center gap-3">
               <div
                 className="w-9 h-9 rounded-xl brand-gradient flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
-                style={{ boxShadow: '0 4px 12px rgba(13,148,136,0.25)' }}
+                style={{ boxShadow: '0 4px 12px rgba(0,151,167,0.25)' }}
               >
                 {initials}
               </div>

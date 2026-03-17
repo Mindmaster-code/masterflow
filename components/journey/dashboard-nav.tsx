@@ -3,7 +3,8 @@
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { LayoutDashboard, Shield, Sparkles, TrendingUp } from 'lucide-react';
+import Image from 'next/image';
+import { LayoutDashboard, Shield, TrendingUp } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { UserMenu } from './user-menu';
 
@@ -33,13 +34,7 @@ export function DashboardNav() {
       <div className="relative max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/dashboard" className="flex items-center gap-3 group">
-          <div
-            className="w-8 h-8 rounded-lg brand-gradient flex items-center justify-center transition-shadow"
-            style={{ boxShadow: '0 4px 12px rgba(13,148,136,0.3)' }}
-          >
-            <Sparkles className="w-4 h-4 text-white" />
-          </div>
-          <span className="font-bold text-base tracking-tight brand-gradient-text">MasterFlow</span>
+          <Image src="/mindmaster-logo.png" alt="MasterFlow" width={120} height={32} className="h-8 w-auto" />
         </Link>
 
         {/* Center nav */}

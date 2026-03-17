@@ -177,7 +177,7 @@ export function ResumoVisual({
   /* ── Shared tooltip style ── */
   const tooltipStyle = {
     backgroundColor: 'rgba(6,14,28,0.95)',
-    border: '1px solid rgba(13,148,136,0.25)',
+    border: '1px solid rgba(0,151,167,0.25)',
     borderRadius: '12px',
     color: 'rgba(255,255,255,0.9)',
     fontSize: 12,
@@ -188,7 +188,7 @@ export function ResumoVisual({
 
       {/* ── Stats Row ── */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <StatMini delay={0}    icon={Target}      label="Etapas Concluídas"  value={`${completedSteps}/4`} color="text-teal-400"    bg="bg-teal-500/15"    border="rgba(13,148,136,0.2)" />
+        <StatMini delay={0}    icon={Target}      label="Etapas Concluídas"  value={`${completedSteps}/4`} color="text-teal-400"    bg="bg-teal-500/15"    border="rgba(0,151,167,0.2)" />
         <StatMini delay={0.08} icon={CheckCircle2} label="Ações Concluídas"   value={completedInitiatives}  color="text-emerald-400" bg="bg-emerald-500/15" border="rgba(16,185,129,0.2)" />
         <StatMini delay={0.16} icon={Zap}          label="Ações Pendentes"    value={totalInitiatives - completedInitiatives} color="text-cyan-400"  bg="bg-cyan-500/15"   border="rgba(6,182,212,0.2)"  />
         <StatMini delay={0.24} icon={TrendingUp}   label="Taxa de Conclusão"  value={`${completionRate}%`}  color="text-sky-400"    bg="bg-sky-500/15"    border="rgba(14,165,233,0.2)" />
@@ -197,10 +197,10 @@ export function ResumoVisual({
       {/* ── Career Evolution ── */}
       {hasEvolution && (
         <Section delay={0.1}>
-          <Card style={{ borderColor: 'rgba(13,148,136,0.2)' }}>
+          <Card style={{ borderColor: 'rgba(0,151,167,0.2)' }}>
             <div className="p-6 md:p-8">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 rounded-2xl brand-gradient flex items-center justify-center shadow-xl" style={{ boxShadow: '0 8px 24px rgba(13,148,136,0.3)' }}>
+                <div className="w-12 h-12 rounded-2xl brand-gradient flex items-center justify-center shadow-xl" style={{ boxShadow: '0 8px 24px rgba(0,151,167,0.3)' }}>
                   <Sparkles className="w-6 h-6 text-white" />
                 </div>
                 <div>
@@ -244,7 +244,7 @@ export function ResumoVisual({
                 </div>
 
                 {/* Desired */}
-                <div className="p-5 rounded-2xl border space-y-3" style={{ background: 'rgba(13,148,136,0.06)', borderColor: 'rgba(13,148,136,0.3)' }}>
+                <div className="p-5 rounded-2xl border space-y-3" style={{ background: 'rgba(0,151,167,0.06)', borderColor: 'rgba(0,151,167,0.3)' }}>
                   <p className="text-xs font-bold uppercase tracking-widest text-teal-400">Destino</p>
                   {[
                     { icon: Target, label: 'Cargo Desejado', value: desiredRole },
@@ -263,7 +263,7 @@ export function ResumoVisual({
 
               {/* Consultant analysis */}
               {analysis.blocks.length > 0 && (
-                <div className="pt-6 border-t" style={{ borderColor: 'rgba(13,148,136,0.15)' }}>
+                <div className="pt-6 border-t" style={{ borderColor: 'rgba(0,151,167,0.15)' }}>
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: 'rgba(234,179,8,0.12)', border: '1px solid rgba(234,179,8,0.25)' }}>
                       <Lightbulb className="w-4.5 h-4.5 text-yellow-400" />
@@ -311,7 +311,7 @@ export function ResumoVisual({
               <p className="text-xs text-white/35 mb-4 ml-9">Média por categoria</p>
               <ResponsiveContainer width="100%" height={300}>
                 <RadarChart data={avgByCategory}>
-                  <PolarGrid stroke="rgba(13,148,136,0.12)" />
+                  <PolarGrid stroke="rgba(0,151,167,0.12)" />
                   <PolarAngleAxis dataKey="category" tick={{ fill: 'rgba(255,255,255,0.65)', fontSize: 12, fontWeight: 600 }} />
                   <PolarRadiusAxis angle={90} domain={[0, 10]} tick={{ fill: 'rgba(255,255,255,0.3)', fontSize: 10 }} />
                   <Radar name="Nível" dataKey="average" stroke="#14B8A6" fill="#14B8A6" fillOpacity={0.25} strokeWidth={2} />
@@ -333,7 +333,7 @@ export function ResumoVisual({
                 <BarChart data={topSkills} layout="vertical" margin={{ left: 110 }}>
                   <XAxis type="number" domain={[0, 10]} stroke="rgba(255,255,255,0.15)" tick={{ fill: 'rgba(255,255,255,0.35)', fontSize: 11 }} />
                   <YAxis type="category" dataKey="name" stroke="rgba(255,255,255,0.2)" tick={{ fontSize: 11, fill: 'rgba(255,255,255,0.65)', fontWeight: 600 }} width={105} />
-                  <Tooltip contentStyle={tooltipStyle} cursor={{ fill: 'rgba(13,148,136,0.05)' }} />
+                  <Tooltip contentStyle={tooltipStyle} cursor={{ fill: 'rgba(0,151,167,0.05)' }} />
                   <Bar dataKey="score" radius={[0, 6, 6, 0]}>
                     {topSkills.map((_, i) => <Cell key={i} fill={`hsl(${168 + i * 6}, 75%, ${48 - i * 3}%)`} />)}
                   </Bar>
@@ -371,7 +371,7 @@ export function ResumoVisual({
         </Section>
 
         <Section delay={0.35}>
-          <Card style={{ borderColor: 'rgba(13,148,136,0.18)' }}>
+          <Card style={{ borderColor: 'rgba(0,151,167,0.18)' }}>
             <div className="p-6">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-9 h-9 rounded-xl brand-gradient flex items-center justify-center">
@@ -387,7 +387,7 @@ export function ResumoVisual({
                   <div key={i} className="flex items-center gap-3 p-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.025)' }}>
                     <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 text-xs font-bold
                       ${step.completed ? 'brand-gradient text-white' : 'text-white/30'}
-                    `} style={step.completed ? { boxShadow: '0 4px 12px rgba(13,148,136,0.25)' } : { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                    `} style={step.completed ? { boxShadow: '0 4px 12px rgba(0,151,167,0.25)' } : { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
                       {step.completed ? <CheckCircle2 className="w-4 h-4" /> : i + 1}
                     </div>
                     <span className={`text-sm font-medium flex-1 ${step.completed ? 'text-white/85' : 'text-white/35'}`}>
@@ -409,7 +409,7 @@ export function ResumoVisual({
       {/* ── SWOT ── */}
       {swotAnalysis && (
         <Section delay={0.4}>
-          <Card style={{ borderColor: 'rgba(13,148,136,0.15)' }}>
+          <Card style={{ borderColor: 'rgba(0,151,167,0.15)' }}>
             <div className="p-6">
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-9 h-9 rounded-xl brand-gradient flex items-center justify-center">
@@ -441,7 +441,7 @@ export function ResumoVisual({
               </div>
 
               {swotAnalysis.weaknessStrategy && (
-                <div className="mt-4 p-5 rounded-2xl border" style={{ background: 'rgba(13,148,136,0.04)', borderColor: 'rgba(13,148,136,0.2)' }}>
+                <div className="mt-4 p-5 rounded-2xl border" style={{ background: 'rgba(0,151,167,0.04)', borderColor: 'rgba(0,151,167,0.2)' }}>
                   <h4 className="font-bold text-teal-400 text-sm mb-2">Estratégia de Desenvolvimento</h4>
                   <p className="text-sm text-white/70 leading-relaxed whitespace-pre-wrap">{swotAnalysis.weaknessStrategy}</p>
                 </div>
@@ -453,7 +453,7 @@ export function ResumoVisual({
 
       {/* ── Overall Completion ── */}
       <Section delay={0.45}>
-        <Card style={{ borderColor: 'rgba(13,148,136,0.18)' }}>
+        <Card style={{ borderColor: 'rgba(0,151,167,0.18)' }}>
           <div className="p-6 md:p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-9 h-9 rounded-xl brand-gradient flex items-center justify-center">

@@ -1,9 +1,8 @@
 @import "tailwindcss";
 
 /* ─── MindMaster Brand Colors ─────────────────────────────────── */
-/* Primary Teal: #0D9488 (teal-600)                                */
-/* Light Teal:   #14B8A6 (teal-500)                               */
-/* Cyan accent:  #06B6D4 (cyan-500)                               */
+/* Teal:  #0097A7 - Corporativo, moderno, tecnológico              */
+/* Cinza: #9E9E9E - Estável, neutro, complementar                  */
 
 @theme {
   --color-background: 222 47% 4%;
@@ -12,19 +11,19 @@
   --color-card-foreground: 210 40% 96%;
   --color-popover: 222 47% 8%;
   --color-popover-foreground: 210 40% 96%;
-  --color-primary: 173 81% 32%;          /* #0D9488 teal-600 */
+  --color-primary: 187 100% 33%;         /* #0097A7 MindMaster Teal */
   --color-primary-foreground: 0 0% 100%;
-  --color-secondary: 222 30% 14%;
-  --color-secondary-foreground: 210 40% 96%;
+  --color-secondary: 0 0% 62%;          /* #9E9E9E MindMaster Cinza */
+  --color-secondary-foreground: 0 0% 100%;
   --color-muted: 222 30% 12%;
-  --color-muted-foreground: 215 20% 55%;
-  --color-accent: 190 95% 43%;           /* #06B6D4 cyan-500 */
+  --color-muted-foreground: 0 0% 62%;   /* #9E9E9E */
+  --color-accent: 187 100% 38%;          /* Teal mais claro */
   --color-accent-foreground: 0 0% 100%;
   --color-destructive: 0 84% 60%;
   --color-destructive-foreground: 0 0% 97%;
   --color-border: 222 30% 14%;
   --color-input: 222 30% 12%;
-  --color-ring: 173 81% 32%;
+  --color-ring: 187 100% 33%;
   --radius: 0.875rem;
 }
 
@@ -40,13 +39,13 @@ body {
 }
 
 /* ─── Brand Identity ──────────────────────────────────────────── */
-/* MindMaster Teal → Cyan gradient */
+/* MindMaster Teal #0097A7 + Cinza #9E9E9E */
 .brand-gradient {
-  background: linear-gradient(135deg, #0D9488 0%, #0EA5E9 100%);
+  background: linear-gradient(135deg, #0097A7 0%, #00ACC1 100%);
 }
 
 .brand-gradient-text {
-  background: linear-gradient(135deg, #2DD4BF 0%, #38BDF8 100%);
+  background: linear-gradient(135deg, #0097A7 0%, #9E9E9E 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -54,7 +53,7 @@ body {
 
 /* Stronger version for headings */
 .brand-gradient-text-strong {
-  background: linear-gradient(135deg, #14B8A6 0%, #06B6D4 50%, #0EA5E9 100%);
+  background: linear-gradient(135deg, #0097A7 0%, #4DD0E1 50%, #9E9E9E 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -62,14 +61,14 @@ body {
 
 /* Legacy compat */
 .premium-gradient-text {
-  background: linear-gradient(135deg, #2DD4BF 0%, #38BDF8 100%);
+  background: linear-gradient(135deg, #0097A7 0%, #9E9E9E 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .premium-gradient {
-  background: linear-gradient(135deg, #0D9488 0%, #0EA5E9 100%);
+  background: linear-gradient(135deg, #0097A7 0%, #00ACC1 100%);
 }
 
 /* ─── Background ──────────────────────────────────────────────── */
@@ -77,15 +76,15 @@ body {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(13, 148, 136, 0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 80% at 50% 100%, rgba(14, 165, 233, 0.06) 0%, transparent 60%);
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(0, 151, 167, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(158, 158, 158, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 50% 100%, rgba(0, 172, 193, 0.06) 0%, transparent 60%);
 }
 
 .dashboard-bg {
   background:
-    radial-gradient(ellipse 60% 40% at 0% 0%, rgba(13, 148, 136, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse 40% 40% at 100% 100%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+    radial-gradient(ellipse 60% 40% at 0% 0%, rgba(0, 151, 167, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 40% at 100% 100%, rgba(158, 158, 158, 0.05) 0%, transparent 50%);
 }
 
 /* ─── Glass / Surface ─────────────────────────────────────────── */
@@ -99,9 +98,9 @@ body {
 }
 
 .glass-teal {
-  background: rgba(13, 148, 136, 0.05);
+  background: rgba(0, 151, 167, 0.05);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(13, 148, 136, 0.15);
+  border: 1px solid rgba(0, 151, 167, 0.15);
 }
 
 /* ─── Cards ───────────────────────────────────────────────────── */
@@ -112,7 +111,7 @@ body {
     rgba(6, 14, 28, 0.9) 100%
   );
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(13, 148, 136, 0.12);
+  border: 1px solid rgba(0, 151, 167, 0.12);
   border-radius: 1.25rem;
   box-shadow:
     0 12px 40px -12px rgba(0, 0, 0, 0.5),
@@ -123,9 +122,9 @@ body {
 }
 
 .premium-card:hover {
-  border-color: rgba(13, 148, 136, 0.28);
+  border-color: rgba(0, 151, 167, 0.28);
   box-shadow:
-    0 20px 56px -12px rgba(13, 148, 136, 0.18),
+    0 20px 56px -12px rgba(0, 151, 167, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   transform: translateY(-2px);
 }
@@ -133,7 +132,7 @@ body {
 /* Stat card */
 .stat-card {
   background: linear-gradient(145deg, rgba(10, 20, 38, 0.8) 0%, rgba(6, 14, 28, 0.8) 100%);
-  border: 1px solid rgba(13, 148, 136, 0.14);
+  border: 1px solid rgba(0, 151, 167, 0.14);
   border-radius: 1.25rem;
   padding: 1.75rem;
   transition: all 0.3s ease;
@@ -148,15 +147,15 @@ body {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(90deg, #0D9488, #06B6D4);
+  background: linear-gradient(90deg, #0097A7, #9E9E9E);
   opacity: 0;
   transition: opacity 0.3s;
 }
 
 .stat-card:hover {
-  border-color: rgba(13, 148, 136, 0.28);
+  border-color: rgba(0, 151, 167, 0.28);
   transform: translateY(-2px);
-  box-shadow: 0 16px 40px -8px rgba(13, 148, 136, 0.15);
+  box-shadow: 0 16px 40px -8px rgba(0, 151, 167, 0.15);
 }
 
 .stat-card:hover::before {
@@ -166,7 +165,7 @@ body {
 /* Feature card */
 .feature-card {
   background: linear-gradient(145deg, rgba(10, 22, 42, 0.9) 0%, rgba(6, 14, 28, 0.9) 100%);
-  border: 1px solid rgba(13, 148, 136, 0.14);
+  border: 1px solid rgba(0, 151, 167, 0.14);
   border-radius: 1.5rem;
   box-shadow: 0 16px 48px -12px rgba(0, 0, 0, 0.6);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -175,9 +174,9 @@ body {
 }
 
 .feature-card:hover {
-  border-color: rgba(13, 148, 136, 0.3);
+  border-color: rgba(0, 151, 167, 0.3);
   box-shadow:
-    0 28px 72px -12px rgba(13, 148, 136, 0.2),
+    0 28px 72px -12px rgba(0, 151, 167, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   transform: translateY(-4px);
 }
@@ -185,7 +184,7 @@ body {
 /* Dashboard step card */
 .step-card {
   background: linear-gradient(145deg, rgba(10, 20, 38, 0.8) 0%, rgba(6, 14, 28, 0.8) 100%);
-  border: 1px solid rgba(13, 148, 136, 0.12);
+  border: 1px solid rgba(0, 151, 167, 0.12);
   border-radius: 1.25rem;
   transition: all 0.3s ease;
   position: relative;
@@ -193,13 +192,13 @@ body {
 }
 
 .step-card.active {
-  border-color: rgba(13, 148, 136, 0.4);
-  box-shadow: 0 0 0 1px rgba(13, 148, 136, 0.15), 0 16px 40px -8px rgba(13, 148, 136, 0.2);
+  border-color: rgba(0, 151, 167, 0.4);
+  box-shadow: 0 0 0 1px rgba(0, 151, 167, 0.15), 0 16px 40px -8px rgba(0, 151, 167, 0.2);
 }
 
 .step-card:hover:not(.locked) {
-  border-color: rgba(13, 148, 136, 0.28);
-  box-shadow: 0 12px 32px -8px rgba(13, 148, 136, 0.15);
+  border-color: rgba(0, 151, 167, 0.28);
+  box-shadow: 0 12px 32px -8px rgba(0, 151, 167, 0.15);
   transform: translateY(-2px);
 }
 
@@ -207,10 +206,10 @@ body {
 .premium-button {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(135deg, #0D9488 0%, #0EA5E9 100%);
-  border: 1px solid rgba(13, 148, 136, 0.5);
+  background: linear-gradient(135deg, #0097A7 0%, #00ACC1 100%);
+  border: 1px solid rgba(0, 151, 167, 0.5);
   box-shadow:
-    0 4px 16px rgba(13, 148, 136, 0.25),
+    0 4px 16px rgba(0, 151, 167, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
   transition: all 0.3s ease;
   color: white;
@@ -218,7 +217,7 @@ body {
 
 .premium-button:hover {
   box-shadow:
-    0 8px 28px rgba(13, 148, 136, 0.4),
+    0 8px 28px rgba(0, 151, 167, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.18);
   transform: translateY(-2px);
 }
@@ -240,17 +239,17 @@ body {
 
 .outline-button {
   background: transparent;
-  border: 1px solid rgba(13, 148, 136, 0.3);
+  border: 1px solid rgba(0, 151, 167, 0.3);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
   transition: all 0.3s ease;
   color: rgba(255,255,255,0.75);
 }
 
 .outline-button:hover {
-  background: rgba(13, 148, 136, 0.08);
-  border-color: rgba(13, 148, 136, 0.5);
+  background: rgba(0, 151, 167, 0.08);
+  border-color: rgba(0, 151, 167, 0.5);
   color: white;
-  box-shadow: 0 4px 16px rgba(13, 148, 136, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 151, 167, 0.12);
 }
 
 /* ─── Inputs ──────────────────────────────────────────────────── */
@@ -262,11 +261,11 @@ body {
 }
 
 .premium-input:focus {
-  background: rgba(13, 148, 136, 0.04);
-  border-color: rgba(13, 148, 136, 0.5);
+  background: rgba(0, 151, 167, 0.04);
+  border-color: rgba(0, 151, 167, 0.5);
   box-shadow:
-    0 0 0 3px rgba(13, 148, 136, 0.1),
-    0 2px 8px rgba(13, 148, 136, 0.1);
+    0 0 0 3px rgba(0, 151, 167, 0.1),
+    0 2px 8px rgba(0, 151, 167, 0.1);
 }
 
 /* ─── Pill / Badge ────────────────────────────────────────────── */
@@ -276,11 +275,11 @@ body {
   gap: 0.5rem;
   padding: 0.375rem 1rem;
   border-radius: 9999px;
-  background: rgba(13, 148, 136, 0.1);
-  border: 1px solid rgba(13, 148, 136, 0.25);
+  background: rgba(0, 151, 167, 0.1);
+  border: 1px solid rgba(0, 151, 167, 0.25);
   font-size: 0.8125rem;
   font-weight: 500;
-  color: #2DD4BF;
+  color: #0097A7;
 }
 
 .section-label {
@@ -291,7 +290,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #14B8A6;
+  color: #0097A7;
 }
 
 /* ─── Page Header ─────────────────────────────────────────────── */
@@ -315,12 +314,12 @@ body {
 /* ─── Decorative ──────────────────────────────────────────────── */
 .gradient-line {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(13, 148, 136, 0.35), rgba(6, 182, 212, 0.35), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 151, 167, 0.35), rgba(158, 158, 158, 0.35), transparent);
 }
 
 .gradient-line-vertical {
   width: 1px;
-  background: linear-gradient(180deg, transparent, rgba(13, 148, 136, 0.3), transparent);
+  background: linear-gradient(180deg, transparent, rgba(0, 151, 167, 0.3), transparent);
 }
 
 .orb {
@@ -330,8 +329,8 @@ body {
   pointer-events: none;
 }
 
-.orb-teal { background: rgba(13, 148, 136, 0.14); }
-.orb-cyan { background: rgba(6, 182, 212, 0.10); }
+.orb-teal { background: rgba(0, 151, 167, 0.14); }
+.orb-cyan { background: rgba(158, 158, 158, 0.10); }
 .orb-blue { background: rgba(14, 165, 233, 0.08); }
 
 /* Journey step connector */
@@ -341,13 +340,13 @@ body {
   left: 10%;
   right: 10%;
   height: 1px;
-  background: linear-gradient(90deg, rgba(13, 148, 136, 0.25) 0%, rgba(6, 182, 212, 0.15) 100%);
+  background: linear-gradient(90deg, rgba(0, 151, 167, 0.25) 0%, rgba(158, 158, 158, 0.15) 100%);
   z-index: 0;
 }
 
 /* ─── Progress Bar ────────────────────────────────────────────── */
 .progress-bar-teal {
-  background: linear-gradient(90deg, #0D9488, #06B6D4, #0EA5E9);
+  background: linear-gradient(90deg, #0097A7, #9E9E9E);
 }
 
 /* ─── Animations ──────────────────────────────────────────────── */
@@ -362,13 +361,13 @@ body {
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 16px rgba(13, 148, 136, 0.3); }
-  50% { box-shadow: 0 0 32px rgba(13, 148, 136, 0.55); }
+  0%, 100% { box-shadow: 0 0 16px rgba(0, 151, 167, 0.3); }
+  50% { box-shadow: 0 0 32px rgba(0, 151, 167, 0.55); }
 }
 
 @keyframes teal-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(13, 148, 136, 0.2), inset 0 0 20px rgba(13, 148, 136, 0.05); }
-  50% { box-shadow: 0 0 40px rgba(13, 148, 136, 0.4), inset 0 0 40px rgba(13, 148, 136, 0.1); }
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 151, 167, 0.2), inset 0 0 20px rgba(0, 151, 167, 0.05); }
+  50% { box-shadow: 0 0 40px rgba(0, 151, 167, 0.4), inset 0 0 40px rgba(0, 151, 167, 0.1); }
 }
 
 @keyframes slide-in-up {
@@ -435,18 +434,18 @@ body {
 
 /* ─── Selection & Scrollbar ───────────────────────────────────── */
 ::selection {
-  background-color: rgba(13, 148, 136, 0.3);
+  background-color: rgba(0, 151, 167, 0.3);
   color: white;
 }
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.15); }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #0D9488 0%, #06B6D4 100%);
+  background: linear-gradient(135deg, #0097A7 0%, #9E9E9E 100%);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #14B8A6 0%, #22D3EE 100%);
+  background: linear-gradient(135deg, #0097A7 0%, #4DD0E1 100%);
 }
 
 /* ─── Utility ─────────────────────────────────────────────────── */

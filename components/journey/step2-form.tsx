@@ -141,8 +141,8 @@ export function Step2Form({
           onClick={onAdd}
           className="h-9 w-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all hover:opacity-80"
           style={{
-            background: 'rgba(13,148,136,0.15)',
-            border: '1px solid rgba(13,148,136,0.25)',
+            background: 'rgba(0,151,167,0.15)',
+            border: '1px solid rgba(0,151,167,0.25)',
             color: 'rgb(20,184,166)',
           }}
         >
@@ -156,8 +156,8 @@ export function Step2Form({
               key={index}
               className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold"
               style={{
-                background: 'rgba(13,148,136,0.1)',
-                border: '1px solid rgba(13,148,136,0.2)',
+                background: 'rgba(0,151,167,0.1)',
+                border: '1px solid rgba(0,151,167,0.2)',
                 color: 'rgba(255,255,255,0.7)',
               }}
             >
@@ -192,7 +192,7 @@ export function Step2Form({
         {/* Section header */}
         <div
           className="px-5 py-3.5 flex items-center gap-3"
-          style={{ background: 'rgba(13,148,136,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
+          style={{ background: 'rgba(0,151,167,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
         >
           <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(20,184,166,1)' }} />
           <p className="text-sm font-bold text-white/80">Objetivo de Carreira</p>
@@ -265,7 +265,7 @@ export function Step2Form({
         {/* Section header */}
         <div
           className="px-5 py-3.5 flex items-center gap-3"
-          style={{ background: 'rgba(13,148,136,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
+          style={{ background: 'rgba(0,151,167,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
         >
           <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(20,184,166,1)' }} />
           <p className="text-sm font-bold text-white/80">O que Preciso Aprender</p>

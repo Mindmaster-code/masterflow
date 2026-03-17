@@ -37,9 +37,9 @@ export default async function Step3Page() {
           <div
             className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
             style={{
-              background: 'linear-gradient(135deg, rgba(13,148,136,0.25) 0%, rgba(99,102,241,0.25) 100%)',
-              border: '1px solid rgba(13,148,136,0.3)',
-              boxShadow: '0 8px 24px rgba(13,148,136,0.15)',
+              background: 'linear-gradient(135deg, rgba(0,151,167,0.25) 0%, rgba(99,102,241,0.25) 100%)',
+              border: '1px solid rgba(0,151,167,0.3)',
+              boxShadow: '0 8px 24px rgba(0,151,167,0.15)',
             }}
           >
             <BarChart3 className="w-6 h-6 text-teal-400" />

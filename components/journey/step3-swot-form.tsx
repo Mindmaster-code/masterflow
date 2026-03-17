@@ -116,9 +116,9 @@ export function Step3SwotForm({
         {/* Section header */}
         <div
           className="px-5 py-3.5 flex items-center gap-3"
-          style={{ background: 'rgba(13,148,136,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
+          style={{ background: 'rgba(0,151,167,0.07)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
         >
-          <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: 'rgba(13,148,136,1)' }} />
+          <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: 'rgba(0,151,167,1)' }} />
           <p className="text-sm font-bold text-white/80">Matriz SWOT</p>
           <span className="ml-auto text-xs text-white/30">análise estratégica</span>
         </div>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import {
   ArrowRight, Target, Brain, BarChart3, Rocket,
@@ -14,13 +15,7 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 nav-blur">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <div
-              className="w-8 h-8 rounded-lg brand-gradient flex items-center justify-center transition-shadow"
-              style={{ boxShadow: '0 4px 12px rgba(13,148,136,0.3)' }}
-            >
-              <Sparkles className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-bold text-base tracking-tight brand-gradient-text">MasterFlow</span>
+            <Image src="/mindmaster-logo.png" alt="MasterFlow" width={120} height={32} className="h-8 w-auto" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -55,15 +50,7 @@ export default function Home() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <div className="flex justify-center mb-10">
-            <div className="flex items-center gap-3">
-              <div
-                className="w-12 h-12 rounded-xl brand-gradient flex items-center justify-center"
-                style={{ boxShadow: '0 6px 20px rgba(13,148,136,0.4)' }}
-              >
-                <Sparkles className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-4xl font-bold tracking-tight brand-gradient-text">MasterFlow</span>
-            </div>
+            <Image src="/mindmaster-logo.png" alt="MasterFlow" width={180} height={96} className="h-16 w-auto" />
           </div>
 
           <div className="flex justify-center mb-6 animate-fade-in">
@@ -163,7 +150,7 @@ export default function Home() {
               { step: '01', title: 'Ponto de Partida',   desc: 'Mapeie seu perfil profissional atual, qualificações e principais desafios.',               icon: Target,   color: 'from-teal-500 to-cyan-500',  glow: 'rgba(20,184,166,0.3)' },
               { step: '02', title: 'Auto-Conhecimento',  desc: 'Defina suas metas de carreira e as qualificações que você precisa desenvolver.',            icon: Brain,    color: 'from-cyan-500 to-sky-500',   glow: 'rgba(6,182,212,0.3)'  },
               { step: '03', title: 'Mapeamento',         desc: '16 skills avaliadas com análise SWOT completa das suas forças e oportunidades.',             icon: BarChart3, color: 'from-sky-500 to-blue-500',   glow: 'rgba(14,165,233,0.3)' },
-              { step: '04', title: 'Plano de Ação',      desc: 'Kanban com ações prioritárias sugeridas e métricas para acompanhar sua evolução.',           icon: Rocket,   color: 'from-teal-600 to-emerald-500', glow: 'rgba(13,148,136,0.3)' },
+              { step: '04', title: 'Plano de Ação',      desc: 'Kanban com ações prioritárias sugeridas e métricas para acompanhar sua evolução.',           icon: Rocket,   color: 'from-teal-600 to-emerald-500', glow: 'rgba(0,151,167,0.3)' },
             ].map((item, i) => {
               const Icon = item.icon;
               return (
@@ -201,7 +188,7 @@ export default function Home() {
                 <span className="brand-gradient-text">baseado em dados</span>
               </h2>
               <p className="text-white/45 text-lg mb-10 leading-relaxed">
-                Chega de achismos. O MasterFlow usa metodologias comprovadas como SWOT e Kanban para criar um plano de carreira personalizado e mensurável.
+                Chega de achismos. O MindMaster usa metodologias comprovadas como SWOT e Kanban para criar um plano de carreira personalizado e mensurável.
               </p>
               <div className="space-y-3">
                 {[
@@ -211,7 +198,7 @@ export default function Home() {
                   { icon: Shield,    title: 'Metodologia Validada', desc: 'Criado por especialistas da MindMaster com 19.000+ gestores formados' },
                 ].map(({ icon: Icon, title, desc }) => (
                   <div key={title} className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/2 transition-colors">
-                    <div className="w-9 h-9 rounded-lg brand-gradient flex items-center justify-center flex-shrink-0 mt-0.5 shadow-lg" style={{ boxShadow: '0 4px 12px rgba(13,148,136,0.25)' }}>
+                    <div className="w-9 h-9 rounded-lg brand-gradient flex items-center justify-center flex-shrink-0 mt-0.5 shadow-lg" style={{ boxShadow: '0 4px 12px rgba(0,151,167,0.25)' }}>
                       <Icon className="w-4 h-4 text-white" />
                     </div>
                     <div>
@@ -232,7 +219,7 @@ export default function Home() {
                     <p className="text-xs text-white/35 uppercase tracking-wider mb-1">Progresso da Jornada</p>
                     <p className="text-3xl font-bold brand-gradient-text">75%</p>
                   </div>
-                  <div className="w-13 h-13 rounded-2xl brand-gradient flex items-center justify-center shadow-xl" style={{ boxShadow: '0 8px 24px rgba(13,148,136,0.3)' }}>
+                  <div className="w-13 h-13 rounded-2xl brand-gradient flex items-center justify-center shadow-xl" style={{ boxShadow: '0 8px 24px rgba(0,151,167,0.3)' }}>
                     <TrendingUp className="w-6 h-6 text-white" />
                   </div>
                 </div>
@@ -248,7 +235,7 @@ export default function Home() {
                   ].map(s => (
                     <div key={s.step} className="flex items-center gap-3 p-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.03)' }}>
                       <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0 ${s.done ? 'brand-gradient text-white' : 'text-white/25'}`}
-                        style={s.done ? { boxShadow: '0 3px 8px rgba(13,148,136,0.25)' } : { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                        style={s.done ? { boxShadow: '0 3px 8px rgba(0,151,167,0.25)' } : { background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.06)' }}>
                         {s.done ? <CheckCircle2 className="w-4 h-4" /> : s.step}
                       </div>
                       <span className={`text-sm font-medium ${s.done ? 'text-white/75' : 'text-white/25'}`}>{s.label}</span>
@@ -256,7 +243,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <div className="mt-5 pt-4 border-t flex items-center justify-between" style={{ borderColor: 'rgba(13,148,136,0.12)' }}>
+                <div className="mt-5 pt-4 border-t flex items-center justify-between" style={{ borderColor: 'rgba(0,151,167,0.12)' }}>
                   <span className="text-xs text-white/30">Próxima etapa</span>
                   <span className="text-sm font-semibold text-teal-400 flex items-center gap-1">Plano de Ação <ArrowRight className="w-3.5 h-3.5" /></span>
                 </div>
@@ -326,7 +313,7 @@ export default function Home() {
       </section>
 
       {/* ─── Footer ─── */}
-      <footer className="border-t" style={{ borderColor: 'rgba(13,148,136,0.1)' }}>
+      <footer className="border-t" style={{ borderColor: 'rgba(0,151,167,0.1)' }}>
         <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="w-7 h-7 rounded-lg brand-gradient flex items-center justify-center">

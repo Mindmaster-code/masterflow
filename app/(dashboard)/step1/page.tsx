@@ -46,9 +46,9 @@ export default async function Step1Page() {
           <div
             className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
             style={{
-              background: 'linear-gradient(135deg, rgba(13,148,136,0.2) 0%, rgba(6,182,212,0.2) 100%)',
-              border: '1px solid rgba(13,148,136,0.25)',
-              boxShadow: '0 8px 24px rgba(13,148,136,0.12)',
+              background: 'linear-gradient(135deg, rgba(0,151,167,0.2) 0%, rgba(158,158,158,0.2) 100%)',
+              border: '1px solid rgba(0,151,167,0.25)',
+              boxShadow: '0 8px 24px rgba(0,151,167,0.12)',
             }}
           >
             <MapPin className="w-6 h-6 text-teal-400" />
