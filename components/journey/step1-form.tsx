@@ -64,31 +64,31 @@ export function Step1Form({
     if (!value) return;
 
     if (field === 'attitudesToWin') {
-      setChallenges({
-        ...challenges,
-        attitudesToWin: [...challenges.attitudesToWin, value],
-      });
+      setChallenges((prev) => ({
+        ...prev,
+        attitudesToWin: [...prev.attitudesToWin, value],
+      }));
     } else {
-      setQualifications({
-        ...qualifications,
-        [field]: [...qualifications[field], value],
-      });
+      setQualifications((prev) => ({
+        ...prev,
+        [field]: [...prev[field], value],
+      }));
     }
 
-    setNewItems({ ...newItems, [field]: '' });
+    setNewItems((prev) => ({ ...prev, [field]: '' }));
   };
 
   const removeItem = (field: keyof typeof qualifications | 'attitudesToWin', index: number) => {
     if (field === 'attitudesToWin') {
-      setChallenges({
-        ...challenges,
-        attitudesToWin: challenges.attitudesToWin.filter((_: any, i: number) => i !== index),
-      });
+      setChallenges((prev) => ({
+        ...prev,
+        attitudesToWin: prev.attitudesToWin.filter((_: any, i: number) => i !== index),
+      }));
     } else {
-      setQualifications({
-        ...qualifications,
-        [field]: qualifications[field].filter((_: any, i: number) => i !== index),
-      });
+      setQualifications((prev) => ({
+        ...prev,
+        [field]: prev[field].filter((_: any, i: number) => i !== index),
+      }));
     }
   };
 
@@ -170,7 +170,7 @@ export function Step1Form({
       <div className="flex gap-2">
         <Input
           value={newItems[fieldKey as keyof typeof newItems]}
-          onChange={(e) => setNewItems({ ...newItems, [fieldKey]: e.target.value })}
+          onChange={(e) => setNewItems((prev) => ({ ...prev, [fieldKey]: e.target.value }))}
           placeholder={placeholder}
           className="premium-input h-11 flex-1"
           onKeyDown={(e) => {
@@ -281,7 +281,7 @@ export function Step1Form({
                   <Label className="text-sm font-semibold text-white/60">Nome Completo *</Label>
                   <Input
                     value={profile.name}
-                    onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+                    onChange={(e) => setProfile((prev) => ({ ...prev, name: e.target.value }))}
                     placeholder="Seu nome completo"
                     className="premium-input h-11"
                   />
@@ -292,7 +292,7 @@ export function Step1Form({
                     <Label className="text-sm font-semibold text-white/60">Cargo Atual *</Label>
                     <Input
                       value={profile.currentRole}
-                      onChange={(e) => setProfile({ ...profile, currentRole: e.target.value })}
+                      onChange={(e) => setProfile((prev) => ({ ...prev, currentRole: e.target.value }))}
                       placeholder="Ex: Gerente de Projetos"
                       className="premium-input h-11"
                     />
@@ -301,7 +301,7 @@ export function Step1Form({
                     <Label className="text-sm font-semibold text-white/60">Empresa Atual</Label>
                     <Input
                       value={profile.currentCompany}
-                      onChange={(e) => setProfile({ ...profile, currentCompany: e.target.value })}
+                      onChange={(e) => setProfile((prev) => ({ ...prev, currentCompany: e.target.value }))}
                       placeholder="Nome da empresa"
                       className="premium-input h-11"
                     />
@@ -312,7 +312,7 @@ export function Step1Form({
                   <Label className="text-sm font-semibold text-white/60">Tempo na Empresa</Label>
                   <Input
                     value={profile.timeInCompany}
-                    onChange={(e) => setProfile({ ...profile, timeInCompany: e.target.value })}
+                    onChange={(e) => setProfile((prev) => ({ ...prev, timeInCompany: e.target.value }))}
                     placeholder="Ex: 2 anos e 6 meses"
                     className="premium-input h-11"
                   />
@@ -341,7 +341,7 @@ export function Step1Form({
                       <button
                         key={range.value}
                         type="button"
-                        onClick={() => setProfile({ ...profile, salaryRange: range.value as any })}
+                        onClick={() => setProfile((prev) => ({ ...prev, salaryRange: range.value as any }))}
                         className="rounded-xl p-4 text-sm font-semibold text-left transition-all"
                         style={
                           isSelected
@@ -442,7 +442,7 @@ export function Step1Form({
                   </Label>
                   <Textarea
                     value={challenges.whatBothersMe}
-                    onChange={(e) => setChallenges({ ...challenges, whatBothersMe: e.target.value })}
+                    onChange={(e) => setChallenges((prev) => ({ ...prev, whatBothersMe: e.target.value }))}
                     placeholder="Descreva seus principais desafios e o que te incomoda na sua carreira atual..."
                     rows={5}
                     className="premium-input resize-none"
@@ -455,7 +455,7 @@ export function Step1Form({
                   </Label>
                   <Textarea
                     value={challenges.myMotivation}
-                    onChange={(e) => setChallenges({ ...challenges, myMotivation: e.target.value })}
+                    onChange={(e) => setChallenges((prev) => ({ ...prev, myMotivation: e.target.value }))}
                     placeholder="O que te motiva a buscar desenvolvimento profissional agora..."
                     rows={5}
                     className="premium-input resize-none"

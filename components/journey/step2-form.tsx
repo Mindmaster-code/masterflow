@@ -50,36 +50,36 @@ export function Step2Form({
     const value = newItems[field].trim();
     if (!value) return;
 
-    setCareerGoals({
-      ...careerGoals,
-      [field]: [...careerGoals[field], value],
-    });
-    setNewItems({ ...newItems, [field]: '' });
+    setCareerGoals((prev) => ({
+      ...prev,
+      [field]: [...prev[field], value],
+    }));
+    setNewItems((prev) => ({ ...prev, [field]: '' }));
   };
 
   const addNeedItem = (field: keyof typeof qualificationNeeds) => {
     const value = newItems[field].trim();
     if (!value) return;
 
-    setQualificationNeeds({
-      ...qualificationNeeds,
-      [field]: [...qualificationNeeds[field], value],
-    });
-    setNewItems({ ...newItems, [field]: '' });
+    setQualificationNeeds((prev) => ({
+      ...prev,
+      [field]: [...prev[field], value],
+    }));
+    setNewItems((prev) => ({ ...prev, [field]: '' }));
   };
 
   const removeGoalItem = (field: 'roleRequirements' | 'targetCompanies' | 'requiredCertifications', index: number) => {
-    setCareerGoals({
-      ...careerGoals,
-      [field]: careerGoals[field].filter((_: any, i: number) => i !== index),
-    });
+    setCareerGoals((prev) => ({
+      ...prev,
+      [field]: prev[field].filter((_: any, i: number) => i !== index),
+    }));
   };
 
   const removeNeedItem = (field: keyof typeof qualificationNeeds, index: number) => {
-    setQualificationNeeds({
-      ...qualificationNeeds,
-      [field]: qualificationNeeds[field].filter((_: any, i: number) => i !== index),
-    });
+    setQualificationNeeds((prev) => ({
+      ...prev,
+      [field]: prev[field].filter((_: any, i: number) => i !== index),
+    }));
   };
 
   const handleSubmit = async () => {
@@ -129,7 +129,7 @@ export function Step2Form({
       <div className="flex gap-2">
         <Input
           value={newItems[fieldKey as keyof typeof newItems]}
-          onChange={(e) => setNewItems({ ...newItems, [fieldKey]: e.target.value })}
+          onChange={(e) => setNewItems((prev) => ({ ...prev, [fieldKey]: e.target.value }))}
           placeholder={placeholder}
           className="premium-input h-11 flex-1"
           onKeyDown={(e) => {
@@ -206,7 +206,7 @@ export function Step2Form({
               <Label className="text-sm font-semibold text-white/60">Cargo Desejado</Label>
               <Input
                 value={careerGoals.desiredRole}
-                onChange={(e) => setCareerGoals({ ...careerGoals, desiredRole: e.target.value })}
+                onChange={(e) => setCareerGoals((prev) => ({ ...prev, desiredRole: e.target.value }))}
                 placeholder="Ex: Diretor de TI"
                 className="premium-input h-11"
               />
@@ -215,7 +215,7 @@ export function Step2Form({
               <Label className="text-sm font-semibold text-white/60">Salário Desejado</Label>
               <Input
                 value={careerGoals.desiredSalary}
-                onChange={(e) => setCareerGoals({ ...careerGoals, desiredSalary: e.target.value })}
+                onChange={(e) => setCareerGoals((prev) => ({ ...prev, desiredSalary: e.target.value }))}
                 placeholder="Ex: R$ 20.000"
                 className="premium-input h-11"
               />
