@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { X, Plus, ArrowRight, ArrowLeft, TrendingUp, BookOpen, Loader2, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ArrowLeft, TrendingUp, BookOpen, Loader2, CheckCircle2 } from 'lucide-react';
+import { TagField } from '@/components/journey/tag-field';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Step2FormProps {
@@ -111,73 +112,6 @@ export function Step2Form({
     }
   };
 
-  // Reusable tag field renderer
-  const TagField = ({
-    fieldKey,
-    items,
-    placeholder,
-    onAdd,
-    onRemove,
-  }: {
-    fieldKey: string;
-    items: string[];
-    placeholder: string;
-    onAdd: () => void;
-    onRemove: (i: number) => void;
-  }) => (
-    <div className="space-y-3">
-      <div className="flex gap-2">
-        <Input
-          value={newItems[fieldKey as keyof typeof newItems]}
-          onChange={(e) => setNewItems((prev) => ({ ...prev, [fieldKey]: e.target.value }))}
-          placeholder={placeholder}
-          className="premium-input h-11 flex-1"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') { e.preventDefault(); onAdd(); }
-          }}
-        />
-        <button
-          type="button"
-          onClick={onAdd}
-          className="h-9 w-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all hover:opacity-80"
-          style={{
-            background: 'rgba(0,151,167,0.15)',
-            border: '1px solid rgba(0,151,167,0.25)',
-            color: 'rgb(20,184,166)',
-          }}
-        >
-          <Plus className="w-4 h-4" />
-        </button>
-      </div>
-      {items.length > 0 ? (
-        <div className="flex flex-wrap gap-2">
-          {items.map((item: string, index: number) => (
-            <span
-              key={index}
-              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold"
-              style={{
-                background: 'rgba(0,151,167,0.1)',
-                border: '1px solid rgba(0,151,167,0.2)',
-                color: 'rgba(255,255,255,0.7)',
-              }}
-            >
-              {item}
-              <button
-                type="button"
-                onClick={() => onRemove(index)}
-                className="transition-colors text-white/30 hover:text-white/70"
-              >
-                <X className="w-3 h-3" />
-              </button>
-            </span>
-          ))}
-        </div>
-      ) : (
-        <p className="text-xs text-white/30 italic">Pressione Enter ou + para adicionar</p>
-      )}
-    </div>
-  );
-
   return (
     <div className="space-y-6">
 
@@ -243,7 +177,8 @@ export function Step2Form({
             <div key={field.key} className="space-y-2">
               <Label className="text-sm font-semibold text-white/60">{field.label}</Label>
               <TagField
-                fieldKey={field.key}
+                value={newItems[field.key]}
+                onValueChange={(v) => setNewItems((prev) => ({ ...prev, [field.key]: v }))}
                 items={careerGoals[field.key]}
                 placeholder={field.placeholder}
                 onAdd={() => addGoalItem(field.key)}
@@ -293,7 +228,8 @@ export function Step2Form({
             <div key={field.key} className="space-y-2">
               <Label className="text-sm font-semibold text-white/60">{field.label}</Label>
               <TagField
-                fieldKey={field.key}
+                value={newItems[field.key]}
+                onValueChange={(v) => setNewItems((prev) => ({ ...prev, [field.key]: v }))}
                 items={qualificationNeeds[field.key]}
                 placeholder={field.placeholder}
                 onAdd={() => addNeedItem(field.key)}

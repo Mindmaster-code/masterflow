@@ -6,7 +6,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
-import { X, Plus, ArrowRight, ArrowLeft, User, Briefcase, Target, Loader2, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, ArrowLeft, User, Briefcase, Target, Loader2, CheckCircle2 } from 'lucide-react';
+import { TagField } from '@/components/journey/tag-field';
 import { SALARY_RANGES } from '@/lib/constants';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -151,73 +152,6 @@ export function Step1Form({
     { number: 2, label: 'Qualificação', icon: Briefcase },
     { number: 3, label: 'Desafios', icon: Target },
   ];
-
-  // Reusable tag field renderer
-  const TagField = ({
-    fieldKey,
-    items,
-    placeholder,
-    onAdd,
-    onRemove,
-  }: {
-    fieldKey: string;
-    items: string[];
-    placeholder: string;
-    onAdd: () => void;
-    onRemove: (i: number) => void;
-  }) => (
-    <div className="space-y-3">
-      <div className="flex gap-2">
-        <Input
-          value={newItems[fieldKey as keyof typeof newItems]}
-          onChange={(e) => setNewItems((prev) => ({ ...prev, [fieldKey]: e.target.value }))}
-          placeholder={placeholder}
-          className="premium-input h-11 flex-1"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') { e.preventDefault(); onAdd(); }
-          }}
-        />
-        <button
-          type="button"
-          onClick={onAdd}
-          className="h-9 w-9 rounded-lg flex items-center justify-center flex-shrink-0 transition-all hover:opacity-80"
-          style={{
-            background: 'rgba(0,151,167,0.15)',
-            border: '1px solid rgba(0,151,167,0.25)',
-            color: 'rgb(0,151,167)',
-          }}
-        >
-          <Plus className="w-4 h-4" />
-        </button>
-      </div>
-      {items.length > 0 ? (
-        <div className="flex flex-wrap gap-2">
-          {items.map((item: string, index: number) => (
-            <span
-              key={index}
-              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold"
-              style={{
-                background: 'rgba(0,151,167,0.1)',
-                border: '1px solid rgba(0,151,167,0.2)',
-                color: 'rgba(255,255,255,0.7)',
-              }}
-            >
-              {item}
-              <button
-                type="button"
-                onClick={() => onRemove(index)}
-                className="transition-colors text-white/30 hover:text-white/70"
-              >
-                <X className="w-3 h-3" />
-              </button>
-            </span>
-          ))}
-        </div>
-      ) : (
-        <p className="text-xs text-white/30 italic">Pressione Enter ou + para adicionar</p>
-      )}
-    </div>
-  );
 
   return (
     <div className="space-y-6">
@@ -399,7 +333,8 @@ export function Step1Form({
                   <div key={field.key} className="space-y-2">
                     <Label className="text-sm font-semibold text-white/60">{field.label}</Label>
                     <TagField
-                      fieldKey={field.key}
+                      value={newItems[field.key]}
+                      onValueChange={(v) => setNewItems((prev) => ({ ...prev, [field.key]: v }))}
                       items={qualifications[field.key]}
                       placeholder={field.placeholder}
                       onAdd={() => addItem(field.key)}
@@ -480,7 +415,8 @@ export function Step1Form({
               <div className="px-5 py-5 space-y-2">
                 <Label className="text-sm font-semibold text-white/60">Atitudes para vencer os desafios</Label>
                 <TagField
-                  fieldKey="attitudesToWin"
+                  value={newItems.attitudesToWin}
+                  onValueChange={(v) => setNewItems((prev) => ({ ...prev, attitudesToWin: v }))}
                   items={challenges.attitudesToWin}
                   placeholder="Ex: Dedicar 2h por dia aos estudos"
                   onAdd={() => addItem('attitudesToWin')}
