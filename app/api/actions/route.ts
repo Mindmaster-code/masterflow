@@ -33,6 +33,18 @@ export async function POST(req: Request) {
     }
 
     const { title, description, quadrant } = await req.json();
+    const titleNorm = (title || 'Nova ação').trim();
+
+    // Prevent duplicates: if action with same title exists, return it
+    const existing = await db.action.findFirst({
+      where: {
+        userId: session.user.id,
+        title: titleNorm,
+      },
+    });
+    if (existing) {
+      return NextResponse.json(existing);
+    }
 
     const count = await db.action.count({
       where: { userId: session.user.id },
@@ -41,7 +53,7 @@ export async function POST(req: Request) {
     const action = await db.action.create({
       data: {
         userId: session.user.id,
-        title: title || 'Nova ação',
+        title: titleNorm,
         description: description || '',
         quadrant: quadrant ?? 1,
         order: count,

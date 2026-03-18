@@ -156,27 +156,55 @@ export default async function Step5Page() {
       }
     );
 
-    const unique = toCreate.slice(0, 18);
-    for (let i = 0; i < unique.length; i++) {
-      await db.action.create({
-        data: {
-          userId: session.user.id,
-          title: unique[i].title,
-          description: unique[i].description,
-          quadrant: unique[i].quadrant,
-          status: 'TODO',
-          order: i,
-        },
+    // Deduplicate by title (case-insensitive) to avoid duplicates from source data
+    const seenTitles = new Set<string>();
+    const unique = toCreate
+      .filter((a) => {
+        const key = a.title.trim().toLowerCase();
+        if (seenTitles.has(key)) return false;
+        seenTitles.add(key);
+        return true;
+      })
+      .slice(0, 18);
+
+    // Re-fetch to prevent race condition (e.g. user opened step5 in multiple tabs)
+    const existingCount = await db.action.count({ where: { userId: session.user.id } });
+    if (existingCount > 0) {
+      actions = await db.action.findMany({
+        where: { userId: session.user.id },
+        orderBy: [{ order: 'asc' }, { createdAt: 'asc' }],
+      });
+    } else {
+      for (let i = 0; i < unique.length; i++) {
+        await db.action.create({
+          data: {
+            userId: session.user.id,
+            title: unique[i].title,
+            description: unique[i].description,
+            quadrant: unique[i].quadrant,
+            status: 'TODO',
+            order: i,
+          },
+        });
+      }
+
+      actions = await db.action.findMany({
+        where: { userId: session.user.id },
+        orderBy: [{ order: 'asc' }, { createdAt: 'asc' }],
       });
     }
-
-    actions = await db.action.findMany({
-      where: { userId: session.user.id },
-      orderBy: [{ order: 'asc' }, { createdAt: 'asc' }],
-    });
   }
 
-  const initiativesData = actions.map((a) => ({
+  // Deduplicate by title when displaying (handles existing duplicates in DB)
+  const seenKeys = new Set<string>();
+  const dedupedActions = actions.filter((a) => {
+    const key = `${a.title.trim().toLowerCase()}|${(a.description || '').slice(0, 80)}`;
+    if (seenKeys.has(key)) return false;
+    seenKeys.add(key);
+    return true;
+  });
+
+  const initiativesData = dedupedActions.map((a) => ({
     id: a.id,
     title: a.title,
     description: a.description,

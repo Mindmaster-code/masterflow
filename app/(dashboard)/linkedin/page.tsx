@@ -31,11 +31,21 @@ export default function LinkedinPage() {
   const [loadingSaved, setLoadingSaved] = useState(true);
 
   useEffect(() => {
-    fetch('/api/linkedin/analysis')
-      .then(res => res.ok ? res.json() : null)
-      .then(data => {
-        if (data) setResult(data);
-      })
+    Promise.all([
+      fetch('/api/linkedin/analysis').then(res => res.ok ? res.json() : null),
+      fetch('/api/actions').then(res => res.ok ? res.json() : []),
+    ]).then(([analysisData, actions]) => {
+      if (analysisData) setResult(analysisData);
+      // Mark recommendations already in kanban (persists across refresh)
+      if (analysisData?.recomendacoes && Array.isArray(actions)) {
+        const actionTitles = new Set(actions.map((a: { title: string }) => a.title.trim().toLowerCase()));
+        const alreadyAdded = new Set<number>();
+        analysisData.recomendacoes.forEach((rec: { titulo: string }, i: number) => {
+          if (actionTitles.has(rec.titulo.trim().toLowerCase())) alreadyAdded.add(i);
+        });
+        setAddedToKanban(prev => new Set([...prev, ...alreadyAdded]));
+      }
+    })
       .finally(() => setLoadingSaved(false));
   }, []);
 
