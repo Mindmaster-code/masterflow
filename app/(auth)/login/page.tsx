@@ -113,6 +113,11 @@ export default function LoginPage() {
                 className="premium-input h-12 rounded-xl"
                 required
               />
+              <div className="flex justify-end pt-0.5">
+                <Link href="/forgot-password" className="text-xs text-teal-400/90 hover:text-teal-300 transition-colors">
+                  Esqueci minha senha
+                </Link>
+              </div>
             </div>
 
             {error && (
@@ -135,10 +140,7 @@ export default function LoginPage() {
             </Button>
 
             <p className="text-center text-sm text-white/40">
-              Ainda não tem conta?{' '}
-              <Link href="/register" className="text-teal-400 font-semibold hover:text-teal-300 transition-colors">
-                Criar conta
-              </Link>
+              Primeiro acesso? Use as credenciais enviadas pela MindMaster.
             </p>
           </form>
         </div>

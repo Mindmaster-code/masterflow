@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import { LayoutDashboard, Shield, LogOut, ChevronDown, Sparkles, TrendingUp } from 'lucide-react';
+import { LayoutDashboard, Shield, LogOut, ChevronDown, Settings, TrendingUp } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export function UserMenu() {
@@ -25,6 +25,7 @@ export function UserMenu() {
   const navLinks = [
     { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { href: '/resumo', icon: TrendingUp, label: 'Resumo' },
+    { href: '/configuracoes', icon: Settings, label: 'Configurações' },
     ...(isAdmin ? [{ href: '/admin/students', icon: Shield, label: 'Admin' }] : []),
   ];
 

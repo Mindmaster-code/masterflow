@@ -4,7 +4,7 @@ import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { LayoutDashboard, Shield, TrendingUp } from 'lucide-react';
+import { LayoutDashboard, Shield, TrendingUp, Settings } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { UserMenu } from './user-menu';
 
@@ -18,6 +18,7 @@ export function DashboardNav() {
   const navLinks = [
     { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { href: '/resumo', icon: TrendingUp, label: 'Resumo' },
+    { href: '/configuracoes', icon: Settings, label: 'Configurações' },
     ...(isAdmin ? [{ href: '/admin/students', icon: Shield, label: 'Admin' }] : []),
   ];
 

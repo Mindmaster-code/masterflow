@@ -4,11 +4,53 @@ export const registerSchema = z.object({
   name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
   email: z.string().email('Email inválido'),
   password: z.string().min(6, 'Senha deve ter pelo menos 6 caracteres'),
+  role: z.enum(['STUDENT', 'ADMIN']).default('STUDENT'),
+});
+
+export const adminUpdateUserSchema = z
+  .object({
+    name: z.string().min(2, 'Nome deve ter pelo menos 2 caracteres'),
+    email: z.string().email('Email inválido'),
+    role: z.enum(['STUDENT', 'ADMIN']),
+    password: z.string().optional(),
+  })
+  .refine(
+    (data) => !data.password || data.password.length === 0 || data.password.length >= 6,
+    { message: 'Nova senha deve ter pelo menos 6 caracteres', path: ['password'] }
+  );
+
+export const adminSendAccessSchema = z.object({
+  /** Se vazio ou omitido, o servidor gera uma senha temporária e atualiza o usuário. */
+  password: z.string().optional(),
 });
 
 export const loginSchema = z.object({
   email: z.string().email('Email inválido'),
   password: z.string().min(1, 'Senha é obrigatória'),
+});
+
+export const forgotPasswordSchema = z.object({
+  email: z.string().email('Email inválido'),
+});
+
+export const resetPasswordSchema = z
+  .object({
+    token: z.string().min(1, 'Link inválido'),
+    password: z.string().min(6, 'Senha deve ter pelo menos 6 caracteres'),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'As senhas não coincidem',
+    path: ['confirmPassword'],
+  });
+
+export const changePasswordSchema = z.object({
+  currentPassword: z.string().min(1, 'Senha atual é obrigatória'),
+  newPassword: z.string().min(6, 'Nova senha deve ter pelo menos 6 caracteres'),
+  confirmPassword: z.string().min(1, 'Confirme a nova senha'),
+}).refine((data) => data.newPassword === data.confirmPassword, {
+  message: 'As senhas não coincidem',
+  path: ['confirmPassword'],
 });
 
 export const profileSchema = z.object({

@@ -6,7 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, User, Briefcase, Target, Flag, Rocket, CheckCircle2, TrendingUp } from 'lucide-react';
+import { ArrowLeft, User, Briefcase, Target, Flag, Rocket, CheckCircle2, TrendingUp, Shield } from 'lucide-react';
+import { EditUserButton } from '@/components/admin/edit-user-button';
+import { UserDangerActions } from '@/components/admin/user-danger-actions';
 import { Progress } from '@/components/ui/progress';
 
 export default async function StudentDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -57,21 +59,50 @@ export default async function StudentDetailPage({ params }: { params: Promise<{ 
           </Button>
         </Link>
 
-        <div className="flex items-center gap-4">
-          <div className="w-20 h-20 rounded-2xl premium-gradient flex items-center justify-center text-white font-bold text-2xl shadow-2xl">
-            {student.name?.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) || 'U'}
-          </div>
-          <div>
-            <h1 className="text-4xl font-bold mb-2">{student.name}</h1>
-            <p className="text-lg text-foreground/60">{student.email}</p>
-            <div className="flex items-center gap-2 mt-2">
-              <Badge className="bg-blue-500/20 border-blue-500/40 text-blue-400">
-                Cadastrado em {new Date(student.createdAt).toLocaleDateString('pt-BR')}
-              </Badge>
-              <Badge className="bg-purple-500/20 border-purple-500/40 text-purple-400">
-                Última atividade: {new Date(student.updatedAt).toLocaleDateString('pt-BR')}
-              </Badge>
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="w-20 h-20 rounded-2xl premium-gradient flex items-center justify-center text-white font-bold text-2xl shadow-2xl">
+              {student.name?.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) || 'U'}
             </div>
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <h1 className="text-4xl font-bold">{student.name}</h1>
+                {student.role === 'ADMIN' ? (
+                  <Badge className="bg-purple-500/20 border-purple-500/40 text-purple-300 gap-1">
+                    <Shield className="w-3.5 h-3.5" />
+                    Administrador
+                  </Badge>
+                ) : (
+                  <Badge className="bg-teal-500/15 border-teal-500/30 text-teal-400">Aluno</Badge>
+                )}
+              </div>
+              <p className="text-lg text-foreground/60">{student.email}</p>
+              <div className="flex flex-wrap items-center gap-2 mt-2">
+                <Badge className="bg-blue-500/20 border-blue-500/40 text-blue-400">
+                  Cadastrado em {new Date(student.createdAt).toLocaleDateString('pt-BR')}
+                </Badge>
+                <Badge className="bg-purple-500/20 border-purple-500/40 text-purple-400">
+                  Última atividade: {new Date(student.updatedAt).toLocaleDateString('pt-BR')}
+                </Badge>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col items-stretch sm:items-end gap-3">
+            <EditUserButton
+              user={{
+                id: student.id,
+                name: student.name,
+                email: student.email,
+                role: student.role,
+              }}
+              size="default"
+            />
+            <UserDangerActions
+              userId={student.id}
+              userName={student.name}
+              userEmail={student.email}
+              currentAdminId={session.user.id}
+            />
           </div>
         </div>
       </div>

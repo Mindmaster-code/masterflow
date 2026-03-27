@@ -6,7 +6,9 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Users, TrendingUp, Eye, ArrowRight } from 'lucide-react';
+import { Users, TrendingUp, Eye, ArrowRight, Shield } from 'lucide-react';
+import { CreateStudentButton } from '@/components/admin/create-student-button';
+import { EditUserButton } from '@/components/admin/edit-user-button';
 
 export default async function AdminStudentsPage() {
   const session = await getServerSession(authOptions);
@@ -15,8 +17,7 @@ export default async function AdminStudentsPage() {
     redirect('/dashboard');
   }
 
-  const students = await db.user.findMany({
-    where: { role: 'STUDENT' },
+  const users = await db.user.findMany({
     include: {
       profile: true,
       journeyProgress: true,
@@ -29,12 +30,19 @@ export default async function AdminStudentsPage() {
     orderBy: { createdAt: 'desc' },
   });
 
-  const totalStudents = students.length;
-  const averageProgress = students.length > 0
-    ? Math.round(students.reduce((sum, s) => sum + (s.journeyProgress?.overallProgress || 0), 0) / students.length)
-    : 0;
+  const studentsOnly = users.filter((u) => u.role === 'STUDENT');
+  const totalStudents = studentsOnly.length;
+  const averageProgress =
+    studentsOnly.length > 0
+      ? Math.round(
+          studentsOnly.reduce((sum, s) => sum + (s.journeyProgress?.overallProgress || 0), 0) /
+            studentsOnly.length
+        )
+      : 0;
 
-  const activeStudents = students.filter(s => s.journeyProgress && s.journeyProgress.currentStep > 1).length;
+  const activeStudents = studentsOnly.filter(
+    (s) => s.journeyProgress && s.journeyProgress.currentStep > 1
+  ).length;
 
   const getStepName = (step: number) => {
     const steps = ['', 'Ponto de Partida', 'Auto-Conhecimento', 'Mapeamento', 'Destino', 'Plano de Ação'];
@@ -56,14 +64,17 @@ export default async function AdminStudentsPage() {
   return (
     <div className="container mx-auto p-6 max-w-7xl animate-fade-in">
       <div className="mb-8">
-        <div className="flex items-center gap-4 mb-6">
-          <div className="p-4 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-2xl">
-            <Users className="w-8 h-8 text-white" />
+        <div className="flex items-center justify-between gap-4 mb-6 flex-wrap">
+          <div className="flex items-center gap-4">
+            <div className="p-4 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-2xl">
+              <Users className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold">Gestão de Usuários</h1>
+              <p className="text-lg text-foreground/60">Alunos e administradores — edite perfis e acessos</p>
+            </div>
           </div>
-          <div>
-            <h1 className="text-4xl font-bold">Gestão de Alunos</h1>
-            <p className="text-lg text-foreground/60">Acompanhe o progresso de todos os estudantes</p>
-          </div>
+          <CreateStudentButton />
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -116,71 +127,99 @@ export default async function AdminStudentsPage() {
 
       <Card className="premium-card">
         <CardHeader>
-          <CardTitle className="text-2xl">Lista de Alunos</CardTitle>
-          <CardDescription className="text-base">Clique em um aluno para ver detalhes completos</CardDescription>
+          <CardTitle className="text-2xl">Lista de usuários</CardTitle>
+          <CardDescription className="text-base">
+            Clique na linha para ver detalhes ou use Editar para alterar dados e perfil
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          {students.length === 0 ? (
+          {users.length === 0 ? (
             <div className="text-center py-16">
               <Users className="w-16 h-16 mx-auto mb-4 text-foreground/20" />
-              <p className="text-foreground/60">Nenhum aluno cadastrado ainda</p>
+              <p className="text-foreground/60 mb-6">Nenhum usuário cadastrado ainda</p>
+              <CreateStudentButton />
             </div>
           ) : (
             <div className="space-y-4">
-              {students.map((student) => (
+              {users.map((student) => (
                 <div key={student.id} className="animate-fade-in">
-                  <Link href={`/admin/students/${student.id}`}>
-                    <div className="premium-card p-6 hover:scale-[1.01] transition-all group cursor-pointer border-primary/20 hover:border-primary/40">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-6 flex-1">
-                          <div className="w-16 h-16 rounded-2xl premium-gradient flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                            {student.name?.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) || 'U'}
-                          </div>
+                  <div className="premium-card p-6 hover:scale-[1.01] transition-all group border-primary/20 hover:border-primary/40 flex flex-col sm:flex-row sm:items-center gap-4">
+                    <Link href={`/admin/students/${student.id}`} className="flex items-center gap-6 flex-1 min-w-0 cursor-pointer">
+                      <div className="w-16 h-16 rounded-2xl premium-gradient flex items-center justify-center text-white font-bold text-xl shadow-lg shrink-0">
+                        {student.name?.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2) || 'U'}
+                      </div>
 
-                          <div className="flex-1">
-                            <div className="flex items-center gap-3 mb-2">
-                              <h3 className="text-xl font-bold">{student.name}</h3>
-                              <Badge className="bg-blue-500/20 border-blue-500/40 text-blue-400 text-xs">
-                                {student.email}
-                              </Badge>
-                            </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <h3 className="text-xl font-bold">{student.name}</h3>
+                          {student.role === 'ADMIN' ? (
+                            <Badge className="bg-purple-500/20 border-purple-500/40 text-purple-300 text-xs gap-1">
+                              <Shield className="w-3 h-3" />
+                              Admin
+                            </Badge>
+                          ) : (
+                            <Badge className="bg-teal-500/15 border-teal-500/30 text-teal-400 text-xs">Aluno</Badge>
+                          )}
+                          <Badge className="bg-blue-500/20 border-blue-500/40 text-blue-400 text-xs truncate max-w-[220px]">
+                            {student.email}
+                          </Badge>
+                        </div>
 
-                            <div className="flex items-center gap-4">
+                        {student.role === 'STUDENT' ? (
+                          <>
+                            <div className="flex flex-wrap items-center gap-4">
                               <div className={`px-4 py-1.5 rounded-lg bg-gradient-to-r ${getStepColor(student.journeyProgress?.currentStep || 0)} text-white text-sm font-semibold shadow-lg`}>
                                 Etapa {student.journeyProgress?.currentStep || 0}: {getStepName(student.journeyProgress?.currentStep || 0)}
                               </div>
 
                               <div className="flex items-center gap-2">
-                                <div className="text-sm text-foreground/60">Progresso:</div>
-                                <div className="text-2xl font-bold premium-gradient-text">
+                                <span className="text-sm text-foreground/60">Progresso:</span>
+                                <span className="text-2xl font-bold premium-gradient-text">
                                   {student.journeyProgress?.overallProgress || 0}%
-                                </div>
+                                </span>
                               </div>
                             </div>
 
-                            <div className="flex items-center gap-6 mt-3 text-sm text-foreground/60">
+                            <div className="flex flex-wrap items-center gap-6 mt-3 text-sm text-foreground/60">
                               <div>
                                 <span className="font-semibold text-primary">{student._count.objectives}</span> Objetivos
                               </div>
                               <div>
-                                Última atividade: <span className="text-foreground/80">
+                                Última atividade:{' '}
+                                <span className="text-foreground/80">
                                   {new Date(student.updatedAt).toLocaleDateString('pt-BR')}
                                 </span>
                               </div>
                             </div>
-                          </div>
-                        </div>
+                          </>
+                        ) : (
+                          <p className="text-sm text-foreground/50">
+                            Administrador · última atividade:{' '}
+                            {new Date(student.updatedAt).toLocaleDateString('pt-BR')}
+                          </p>
+                        )}
+                      </div>
+                    </Link>
 
-                        <Button 
-                          className="premium-button rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
+                    <div className="flex items-center gap-2 shrink-0 sm:flex-col sm:items-end">
+                      <EditUserButton
+                        user={{
+                          id: student.id,
+                          name: student.name,
+                          email: student.email,
+                          role: student.role,
+                        }}
+                        stopPropagation
+                      />
+                      <Link href={`/admin/students/${student.id}`}>
+                        <Button className="premium-button rounded-xl w-full sm:w-auto" size="sm">
                           <Eye className="w-4 h-4 mr-2" />
-                          Ver Detalhes
+                          Detalhes
                           <ArrowRight className="w-4 h-4 ml-2" />
                         </Button>
-                      </div>
+                      </Link>
                     </div>
-                  </Link>
+                  </div>
                 </div>
               ))}
             </div>

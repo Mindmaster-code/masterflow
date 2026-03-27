@@ -15,7 +15,8 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 nav-blur">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <Image src="/mindmaster-logo.png" alt="MasterFlow" width={120} height={32} className="h-8 w-auto" />
+            <Image src="/mindmaster-logo.png" alt="MindMaster" width={120} height={32} className="h-8 w-auto" />
+            <span className="text-white font-semibold text-lg tracking-tight">MasterFlow</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -28,13 +29,8 @@ export default function Home() {
 
           <div className="flex items-center gap-3">
             <Link href="/login">
-              <Button variant="ghost" className="text-sm text-white/60 hover:text-white hover:bg-white/5">
-                Entrar
-              </Button>
-            </Link>
-            <Link href="/register">
               <Button className="premium-button text-sm px-5 h-9 rounded-xl">
-                Começar Agora
+                Entrar
                 <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
             </Link>
@@ -72,15 +68,10 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-scale-in" style={{ animationDelay: '0.3s' }}>
-            <Link href="/register">
-              <Button size="lg" className="premium-button text-base px-8 h-13 rounded-2xl group w-full sm:w-auto">
-                Iniciar Jornada Gratuita
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
             <Link href="/login">
-              <Button size="lg" variant="outline" className="outline-button text-base px-8 h-13 rounded-2xl w-full sm:w-auto">
-                Já sou Aluno
+              <Button size="lg" className="premium-button text-base px-8 h-13 rounded-2xl group w-full sm:w-auto">
+                Entrar na Plataforma
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
@@ -297,15 +288,10 @@ export default function Home() {
             Junte-se a executivos que usam o MasterFlow para acelerar sua carreira com clareza e método.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/register">
-              <Button size="lg" className="premium-button text-base px-10 h-13 rounded-2xl group w-full sm:w-auto">
-                Começar Agora — É Grátis
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
             <Link href="/login">
-              <Button size="lg" variant="outline" className="outline-button text-base px-10 h-13 rounded-2xl w-full sm:w-auto">
-                Já tenho uma conta
+              <Button size="lg" className="premium-button text-base px-10 h-13 rounded-2xl group w-full sm:w-auto">
+                Entrar na Plataforma
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
           </div>
