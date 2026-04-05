@@ -154,9 +154,6 @@ export default function LoginPage() {
               <p className="text-xs text-white/45 leading-relaxed">
                 Use o email que você recebeu da <span className="text-white/70 font-medium">MindMaster Treinamentos</span> para acessar a plataforma.
               </p>
-              <p className="text-xs text-white/30 mt-2 pt-2 border-t border-white/5">
-                Teste: aluno@masterflow.com · senha123
-              </p>
             </div>
           </div>
         </div>
